@@ -1,0 +1,42 @@
+:host {
+  display: block;
+  max-width: 1000px;
+  margin: 0 auto;
+  font-family: "Poiret One", cursive;
+  color: #523f34;
+    background-color: #946543; /* Couleur charte */
+
+}
+
+.list-section {
+  background-color: #946543; /* Couleur charte */
+  border: 2px solid #c29b7f;
+  border-radius: 0.75rem;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+  padding: 1.5rem;
+}
+
+.btn-outline-custom {
+  color: #523f34;
+  border-color: #c29b7f;
+  font-weight: 700;
+}
+
+.btn-outline-custom:hover,
+.btn-outline-custom:focus {
+  background-color: #c29b7f;
+  color: #523f34;
+  border-color: #946543;
+}
+
+.error {
+  font-size: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  :host {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+}

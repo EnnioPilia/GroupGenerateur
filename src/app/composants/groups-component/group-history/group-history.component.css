@@ -1,0 +1,89 @@
+:host .group-history {
+  font-family: "Poiret One", cursive;
+  max-width: 600px;
+  margin: 0 auto;
+  color: #523f34;
+  background-color: #e0a880 !important;
+
+}
+
+:host .group-history h3 {
+  color: #5e3b2c;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+:host .group-history .history-set h4 {
+  color: #8e5e3f;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+:host .group-history .group {
+  background-color: #946543;
+  border: 2px solid #c29b7f;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+  color: #523f34;
+}
+
+:host .group-history .group strong {
+  color: #a56f4c;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+:host .group-history .group ul {
+  padding-left: 1rem;
+  list-style-type: disc;
+}
+
+:host .group-history .group ul li {
+  background-color: #946543;
+  border: 1px solid #c29b7f;
+  border-radius: 0.5rem;
+  margin-bottom: 0.3rem;
+  padding: 0.3rem 0.6rem;
+  font-weight: 600;
+  color: #523f34;
+}
+
+
+.btn-danger-custom {
+  background-color: #d64545;
+  color: white;
+  font-weight: 700;
+}
+
+.btn-danger-custom:hover {
+  background-color: #b32d2d;
+}
+
+.btn-edit-custom {
+  background-color: rgb(5, 119, 5);
+  color: white;
+  font-weight: 500;
+}
+
+.btn-edit-custom:hover {
+  background-color: rgb(26, 107, 26);
+}
+
+@media (max-width: 768px) {
+  :host .group-history {
+    max-width: 100%;
+    padding: 1rem;
+  }
+
+  :host .group-history h3 {
+    font-size: 1.5rem;
+  }
+
+  :host .group-history .history-set h4 {
+    font-size: 1.2rem;
+  }
+}

@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Group } from '../../../core/models/group.model';
+import { List } from '../../../core/models/list.model';
 
 @Component({
   selector: 'app-group-generated',
@@ -13,9 +14,15 @@ import { Group } from '../../../core/models/group.model';
 export class GroupGeneratedComponent {
   @Input() groups: Group[] = [];
   @Input() groupNames: string[] = [];
+ @Input() list!: List;
 
   @Output() groupNamesChange = new EventEmitter<string[]>();
-
+  @Output() generate = new EventEmitter<void>();
+  showGroups: boolean = false;
+  onGenerate() {
+    this.generate.emit();
+    this.showGroups = true;
+  }
   onGroupNameChange(index: number, newName: string) {
     this.groupNames[index] = newName;
     this.groupNamesChange.emit(this.groupNames);

@@ -1,75 +1,96 @@
-:host {
-  display: block;
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto 1.5rem;
-}
+@import url("https://fonts.googleapis.com/css2?family=Poiret+One&display=swap");
 
-.bg-group-header {
-  background-color: #ddb393;
+.bg-list-header {
+  font-family: 'Poiret One', cursive;
+  background-color: #b87e53;
   border: 2px solid #c29b7f;
   border-radius: 0.75rem;
   padding: 2rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  color: #3a2a20;
-  font-family: "Poiret One", sans-serif;
+  color: #523f34;
+  max-width: 600px;
+  margin: 0 auto 1.5rem;
 }
 
-h2 {
-  text-align: center;
+.bg-list-header h2.text-custom {
   color: #5e3b2c;
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
 }
 
-.group-controls {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
+.bg-list-header label.text-brown {
+  color: #5e3b2c;
+  font-weight: 600;
 }
 
-.group-controls .form-control-custom {
+.bg-list-header input.form-control-custom {
+  width: 70px;
   background-color: #bd8e6a;
+  border-color: #c29b7f;
   color: #3a2a20;
   font-weight: 600;
-  width: 70px;
 }
 
-.form-check {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.form-check-input {
+.bg-list-header .form-check-input {
   background-color: #bd8e6a;
   border-color: #785235;
+  width: 18px;
+  height: 18px;
 }
 
-.form-check-input:checked {
+.bg-list-header .form-check-input:checked {
   background-color: #6e4b3a !important;
   border-color: #6e4b3a !important;
 }
 
-label {
+.bg-list-header .form-check-label.text-brown {
   font-weight: 600;
   color: #5e3b2c;
 }
 
+.bg-list-header .btn-primary-custom {
+  background-color: #a56f4c;
+  border-color: #8e5e3f;
+  font-weight: 700;
+  color: white;
+}
+
+.bg-list-header .btn-primary-custom:hover,
+.bg-list-header .btn-primary-custom:focus {
+  background-color: #8e5e3f;
+  border-color: #715437;
+}
+
+.bg-list-header .btn-danger-custom {
+  background-color: #d9534f;
+  border-color: #c9302c;
+  font-weight: 700;
+  color: white;
+}
+
+.bg-list-header .btn-danger-custom:hover,
+.bg-list-header .btn-danger-custom:focus {
+  background-color: #c9302c;
+  border-color: #ac2925;
+}
+
 @media (max-width: 768px) {
-  .group-controls {
+  .bg-list-header h2.text-custom {
+    font-size: 2rem;
+  }
+
+  .bg-list-header input.form-control-custom {
+    width: 100% !important;
+  }
+
+  .bg-list-header .mb-3.row.align-items-center {
     flex-direction: column;
     align-items: stretch;
   }
 
-  h2 {
-    font-size: 2rem;
-  }
-
-  .form-control-custom {
-    width: 100% !important;
+  .bg-list-header .d-flex.justify-content-center.gap-3.flex-wrap.mt-4 {
+    flex-direction: column;
+    align-items: stretch;
   }
 }

@@ -43,54 +43,58 @@ export class GroupGeneratorComponent implements OnInit {
     private groupsService: GroupsService
   ) {}
 
-  ngOnInit(): void {
-    // Init lists ici, après que listService soit injecté
-    this.lists = this.listService.getLists();
 
-    this.lists.forEach(list => {
-      if (!list.groupNames) list.groupNames = [];
-      list.generatedGroups = [];
+ngOnInit(): void {
+  this.lists = this.listService.getLists();
 
-      const history = this.groupsService.getHistory(list.id);
-      list.groupsSaved = history.length > 0;
-      list.showSavedGroups = list.groupsSaved;
-    });
+this.lists.forEach(list => {
+  if (!list.groupNames) list.groupNames = [];
+  list.generatedGroups = [];
+
+  const history = this.groupsService.getHistory(list.id);
+  list.groupsSaved = history.length > 0;
+  list.showSavedGroups = list.groupsSaved;
+  list.showGroups = false; // ✅ Initialise à false
+});
+
+}
+
+generateForList(listId: string): void {
+  const list = this.lists.find(l => l.id === listId);
+  if (!list) return;
+
+  if (!list.persons || list.persons.length < this.numberOfGroups) {
+    this.errorMessage = 'Pas assez de personnes pour former autant de groupes.';
+    list.generatedGroups = [];
+    list.showGroups = false;  // cache les groupes
+    return;
   }
 
-  generateForList(listId: string): void {
-    this.selectedListId = listId;
+  const generatedGroups = this.groupsService.generateGroups(
+    list.persons,
+    this.numberOfGroups,
+    this.criteria,
+    listId
+  );
 
-    const list = this.lists.find(l => l.id === listId);
-    if (!list) return;
-
-    if (!list.persons || list.persons.length < this.numberOfGroups) {
-      this.errorMessage = 'Pas assez de personnes pour former autant de groupes.';
-      list.generatedGroups = [];
-      return;
-    }
-
-    const generatedGroups = this.groupsService.generateGroups(
-      list.persons,
-      this.numberOfGroups,
-      this.criteria,
-      listId
-    );
-
-    if (!generatedGroups || generatedGroups.length === 0) {
-      this.errorMessage = 'Impossible de générer des groupes différents. Essayez de modifier les critères.';
-      list.generatedGroups = [];
-      return;
-    }
-
-    list.generatedGroups = generatedGroups;
-    list.groupNames = generatedGroups.map(g => g.name);
-    list.groupsSaved = true;
-    list.showSavedGroups = true;
-    this.errorMessage = '';
-
-    this.groupsService.saveGroupsToHistory(listId, generatedGroups);
-    this.groupHistoryComponent?.reload();
+  if (!generatedGroups || generatedGroups.length === 0) {
+    this.errorMessage = 'Impossible de générer des groupes différents. Essayez de modifier les critères.';
+    list.generatedGroups = [];
+    list.showGroups = false;  // cache les groupes
+    return;
   }
+
+  list.generatedGroups = generatedGroups;
+  list.groupNames = generatedGroups.map(g => g.name);
+  list.groupsSaved = true;
+  list.showSavedGroups = true;
+  list.showGroups = true;  // <--- affiche les groupes générés
+  this.errorMessage = '';
+
+  this.groupsService.saveGroupsToHistory(listId, generatedGroups);
+  this.groupHistoryComponent?.reload();
+}
+
 
   deleteSavedGroups(listId: string): void {
     this.groupsService.clearHistory(listId);

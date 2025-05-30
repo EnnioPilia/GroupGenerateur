@@ -11,4 +11,6 @@ export interface List {
   groupsSaved?: boolean;
   groupNames?: string[];
   showSavedGroups?: boolean;
+    showGroups?: boolean; // ✅ Ajouté ici
+
 }

@@ -1,13 +1,33 @@
-<div *ngFor="let group of groups; let i = index" class="group">
-  <input
-    type="text"
-    [value]="groupNames[i]"
-    (input)="onGroupNameChange(i, getInputValue($event))"
-  />
+<div class="group-section rounded border-custom p-4 mx-auto" style="max-width: 600px;">
 
-  <ul>
-    <li *ngFor="let person of group.persons">
-      {{ person.lastName }}
-    </li>
-  </ul>
+  <h2 class="group-title text-custom mb-4">
+   {{ list.name }}
+  </h2>
+
+  <div class="d-flex justify-content-center mb-4">
+    <button class="btn btn-primary-custom fw-bold px-4" (click)="onGenerate()">
+      Générer les groupes
+    </button>
+  </div>
+
+  <div *ngIf="showGroups">
+    <div *ngFor="let group of groups; let i = index" class="group mb-4">
+      <div class="mb-3">
+        <input
+          type="text"
+          [value]="groupNames[i]"
+          (input)="onGroupNameChange(i, getInputValue($event))"
+          class="form-control fw-bold group-input"
+          placeholder="Nom du groupe"
+        />
+      </div>
+
+      <ul class="list-group group-list">
+        <li *ngFor="let person of group.persons" class="list-group-item group-list-item">
+          {{ person.lastName }}  {{ person.age }} ans  {{ person.isFormerDwwm }} 
+        </li>
+      </ul>
+    </div>
+  </div>
+
 </div>

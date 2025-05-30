@@ -1,14 +1,26 @@
-<div class="group-history">
-  <h3>Historique des groupes</h3>
-  <div *ngFor="let groups of history; index as i" class="history-set">
-    <h4>Génération #{{ i + 1 }}</h4>
-    <div *ngFor="let group of groups" class="group">
-      <strong>{{ group.name }}</strong>
-      <ul>
-        <li *ngFor="let person of group.persons">
-          {{ person.lastName }}
+<div class="group-history container my-4 p-3 rounded border bg-light">
+  <h3 class="text-center mb-4" style="font-family: 'Poiret One', cursive; color: #5e3b2c;">
+    Historique des groupes
+  </h3>
+
+  <div *ngFor="let groups of history; index as i" class="history-set mb-4">
+    <h4 class="mb-3" style="color: #8e5e3f; font-weight: 700;">
+      Tirage #{{ i + 1 }}
+    </h4>
+
+    <div *ngFor="let group of groups" class="group mb-3 p-3 rounded border border-secondary bg-white shadow-sm">
+      <strong class="d-block mb-2" style="color: #a56f4c; font-size: 1.2rem;">
+        {{ group.name }}
+      </strong>
+      <ul class="list-group">
+        <li *ngFor="let person of group.persons" class="list-group-item" style="background-color: #bd8e6a; border-color: #c29b7f; color: #523f34; font-weight: 600;">
+         {{ person.lastName }}  {{ person.age }} ans  {{ person.isFormerDwwm }} 
         </li>
       </ul>
     </div>
+
   </div>
+          <button class="btn btn-danger-custom fw-bold px-4" (click)="delete.emit()">
+      Supprimer les groupes
+    </button>
 </div>

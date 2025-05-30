@@ -1,55 +1,36 @@
+<div class="bg-list-header rounded border-custom p-4 mx-auto">
+  <h2 class="text-custom">
+  Générateur de groupes
+  </h2> 
 
+  <div class="mb-3 row align-items-center">
+    <label for="numberOfGroups" class="col-auto col-form-label text-brown fw-bold">
+      Nombre de groupes :
+    </label>
+    <div class="col-auto">
+      <input type="number" id="numberOfGroups" [(ngModel)]="numberOfGroups"
+             (ngModelChange)="onNumberChange($event)" min="2"
+             class="form-control form-control-custom fw-bold" />
+    </div>
+  </div>
 
-<div class="group-header">
-  <h2>Liste : {{ list.name }}</h2>
+  <div class="form-check mb-3">
+    <input class="form-check-input" type="checkbox" id="mixerAncienDwwm"
+           [(ngModel)]="criteria.mixerAncienDwwm" (change)="onCriteriaChange()" />
+    <label class="form-check-label text-brown fw-bold" for="mixerAncienDwwm">
+      Mixer ancien et DWWM
+    </label>
+  </div>
 
-  <label>Nombre de groupes :
-    <input type="number" [(ngModel)]="numberOfGroups" (ngModelChange)="onNumberChange($event)" min="2" />
-  </label>
+  <div class="form-check mb-3">
+    <input class="form-check-input" type="checkbox" id="mixerAge"
+           [(ngModel)]="criteria.mixerAge" (change)="onCriteriaChange()" />
+    <label class="form-check-label text-brown fw-bold" for="mixerAge">
+      Mixer par âge
+    </label>
+  </div>
 
-  <label>
-    <input type="checkbox" [(ngModel)]="criteria.mixerAncienDwwm" (change)="onCriteriaChange()" />
-    Mixer ancien et DWWM
-  </label>
+  <div class="d-flex justify-content-center gap-3 flex-wrap mt-4">
 
-  <label>
-    <input type="checkbox" [(ngModel)]="criteria.mixerAge" (change)="onCriteriaChange()" />
-    Mixer par âge
-  </label>
-
-  <button (click)="generate.emit()">Générer</button>
-  <button (click)="delete.emit()">Supprimer les groupes</button>
+  </div>
 </div>
-
-
-
-
-
-
-<!-- <div class="bg-list-header">
-    <div class="bg-list-header p-4 mb-4" style="
-        background-color: #ddb393;
-        border: 2px solid #c29b7f;
-        border-radius: 0.75rem;
-      ">
-      <h2 class="text-center mb-0">Générateur de groupes</h2>
-
-      <div class="d-flex align-items-center gap-4 mb-3" style="max-width: 600px">
-        <div class="d-flex align-items-center mt-4" style="gap: 10px">
-          <label for="numberOfGroups" class="form-label mb-0">Nombre :</label>
-          <input type="number" id="numberOfGroups" name="numberOfGroups" class="form-control form-control-custom"
-            style="width: 55px; background-color: #bd8e6a; font-weight: 600" min="1" [(ngModel)]="numberOfGroups"
-            required />
-        </div>
-
-        <div class="form-check d-flex align-items-center me-3 ms-4 mt-3" >
-          <input type="checkbox" id="mixerAncienDwwm" [(ngModel)]="criteria.mixerAncienDwwm" class="form-check-input" />
-          <label for="mixerAncienDwwm" class="form-check-label ms-2">Mixer dwwm</label>
-        </div>
-
-        <div class="form-check d-flex align-items-center mt-3">
-          <input type="checkbox" id="mixerAge" [(ngModel)]="criteria.mixerAge" class="form-check-input age" />
-          <label for="mixerAge" class="form-check-label ms-2">Mixer âge</label>
-        </div>
-      </div>
-    </div> -->

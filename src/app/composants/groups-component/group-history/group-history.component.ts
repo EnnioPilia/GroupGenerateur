@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit,EventEmitter,Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GroupsService } from '../../../core/groups.service';
 import { Group } from '../../../core/models/group.model';
@@ -13,6 +13,7 @@ import { Group } from '../../../core/models/group.model';
 export class GroupHistoryComponent implements OnInit {
   @Input() listId!: string;
   history: Group[][] = [];
+  @Output() delete = new EventEmitter<void>();
 
   constructor(private groupsService: GroupsService) {}
 
