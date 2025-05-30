@@ -2,14 +2,22 @@
 
 .bg-list-header {
   font-family: 'Poiret One', cursive;
-  background-color: #b87e53;
+  background-color: #ddb393;
   border: 2px solid #c29b7f;
-  border-radius: 0.75rem;
+  border-radius: 15%;
   padding: 2rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   color: #523f34;
   max-width: 600px;
   margin: 0 auto 1.5rem;
+}
+
+
+h2 {
+  color: #5e3b2c;
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
 }
 
 .bg-list-header h2.text-custom {

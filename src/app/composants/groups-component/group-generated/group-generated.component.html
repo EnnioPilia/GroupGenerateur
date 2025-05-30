@@ -1,33 +1,31 @@
 <div class="group-section rounded border-custom p-4 mx-auto" style="max-width: 600px;">
-
-  <h2 class="group-title text-custom mb-4">
-   {{ list.name }}
+  <h2 class=" mb-4">
+    {{ list.name }}
   </h2>
 
   <div class="d-flex justify-content-center mb-4">
-    <button class="btn btn-primary-custom fw-bold px-4" (click)="onGenerate()">
+    <button class="btn btn-primary-custom fw-bold p-3 px-5" (click)="onGenerate()">
       Générer les groupes
     </button>
   </div>
 
   <div *ngIf="showGroups">
-    <div *ngFor="let group of groups; let i = index" class="group mb-4">
+    <div *ngFor="let group of groups; let i = index" class="group card mb-4  shadow-sm">
       <div class="mb-3">
         <input
           type="text"
           [value]="groupNames[i]"
           (input)="onGroupNameChange(i, getInputValue($event))"
-          class="form-control fw-bold group-input"
+          class="form-control fw-bold group-input px-0"
           placeholder="Nom du groupe"
         />
       </div>
 
-      <ul class="list-group group-list">
-        <li *ngFor="let person of group.persons" class="list-group-item group-list-item">
+      <ul class="list-group group-list px-4 ">
+        <li *ngFor="let person of group.persons" class="list-group-item group-list-item mb-3  p-3">
           {{ person.lastName }}  {{ person.age }} ans  {{ person.isFormerDwwm }} 
         </li>
       </ul>
     </div>
   </div>
-
 </div>
