@@ -23,12 +23,12 @@
     {{ list.showSavedGroups ? 'Cacher' : 'Afficher' }} l’historique
   </button>
 </div>
+<app-group-history
+  *ngIf="list.showSavedGroups"
+  [listId]="list.id"
+  (delete)="deleteSavedGroups(list.id)"
+></app-group-history>
 
-  <app-group-history
-    *ngIf="list.showSavedGroups"
-    [listId]="list.id"
-       (delete)="deleteSavedGroups(list.id)"
-  ></app-group-history>
 
 
 </div>

@@ -1,7 +1,9 @@
-import { Component, Input, OnInit,EventEmitter,Output } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GroupsService } from '../../../core/groups.service';
 import { Group } from '../../../core/models/group.model';
+import { ListService } from '../../../core/list.services'; // IMPORTANT
+import { List } from '../../../core/models/list.model';
 
 @Component({
   selector: 'app-group-history',
@@ -12,13 +14,23 @@ import { Group } from '../../../core/models/group.model';
 })
 export class GroupHistoryComponent implements OnInit {
   @Input() listId!: string;
+  list?: List;  // On stocke la liste complète ici
   history: Group[][] = [];
   @Output() delete = new EventEmitter<void>();
 
-  constructor(private groupsService: GroupsService) {}
+  constructor(
+    private groupsService: GroupsService,
+    private listService: ListService // Injection pour récupérer la liste
+  ) {}
 
   ngOnInit(): void {
+    this.loadList();
     this.loadHistory();
+  }
+
+  loadList(): void {
+    const lists = this.listService.getLists();
+    this.list = lists.find(l => l.id === this.listId);
   }
 
   loadHistory(): void {
