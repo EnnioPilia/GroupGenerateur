@@ -2,8 +2,10 @@
 
 .parent-page {
   background-color: #9e8167;
-  min-height: 100vh; 
-  padding: 1rem; 
+  
+  min-height: 100vh;
+  box-sizing: border-box;
+
   margin: 0;
   font-weight: 500;
 
@@ -17,7 +19,7 @@
   width: 40%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   padding: 2rem;
-  margin: 50px;
+
   height: 100%;
 }
 
