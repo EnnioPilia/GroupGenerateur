@@ -12,5 +12,6 @@ export interface List {
   groupNames?: string[];
   showSavedGroups?: boolean;
     showGroups?: boolean; // ✅ Ajouté ici
+  errorMessage?: string;  // <-- ajout ici
 
 }

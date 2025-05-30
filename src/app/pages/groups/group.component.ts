@@ -62,9 +62,11 @@ this.lists.forEach(list => {
 generateForList(listId: string): void {
   const list = this.lists.find(l => l.id === listId);
   if (!list) return;
+  
+  list.errorMessage = ''; // reset erreur locale à chaque tentative
 
   if (!list.persons || list.persons.length < this.numberOfGroups) {
-    this.errorMessage = 'Pas assez de personnes pour former autant de groupes.';
+    list.errorMessage = 'Pas assez de personnes pour former autant de groupes.';
     list.generatedGroups = [];
     list.showGroups = false;  // cache les groupes
     return;
@@ -89,7 +91,7 @@ generateForList(listId: string): void {
   list.groupsSaved = true;
   list.showSavedGroups = true;
   list.showGroups = true;  // <--- affiche les groupes générés
-  this.errorMessage = '';
+  list.errorMessage = '';
 
   this.groupsService.saveGroupsToHistory(listId, generatedGroups);
   this.groupHistoryComponent?.reload();

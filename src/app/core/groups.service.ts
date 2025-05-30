@@ -131,4 +131,26 @@ export class GroupsService {
     getCustomGroupNames(listId: string): { [key: number]: string } {
         return JSON.parse(localStorage.getItem(`groups-names-${listId}`) || '{}');
     }
+    deleteTirage(listId: string, indexToDelete: number): void {
+        const history: Group[][] = JSON.parse(localStorage.getItem(`groups-${listId}`) || '[]');
+        history.splice(indexToDelete, 1);
+
+        localStorage.setItem(`groups-${listId}`, JSON.stringify(history));
+
+        const customNames: { [key: number]: string } = JSON.parse(localStorage.getItem(`groups-names-${listId}`) || '{}');
+        delete customNames[indexToDelete];
+
+        const reorderedNames: { [key: number]: string } = {};
+        Object.keys(customNames).forEach(key => {
+            const num = +key;
+            if (num > indexToDelete) {
+                reorderedNames[num - 1] = customNames[num];
+            } else if (num < indexToDelete) {
+                reorderedNames[num] = customNames[num];
+            }
+        });
+
+        localStorage.setItem(`groups-names-${listId}`, JSON.stringify(reorderedNames));
+    }
+
 }

@@ -7,8 +7,11 @@
     <button class="btn btn-primary-custom fw-bold p-3 px-5" (click)="onGenerate()">
       Générer les groupes
     </button>
+    
   </div>
-
+<div *ngIf="errorMessage" class="error text-danger fw-bold mb-3 text-center">
+  {{ errorMessage }}
+</div>
   <div *ngIf="showGroups">
     <div *ngFor="let group of groups; let i = index" class="group card mb-4  shadow-sm">
       <div class="mb-3">

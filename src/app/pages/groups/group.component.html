@@ -13,13 +13,16 @@
   [list]="list"
   [groups]="list.generatedGroups || []"
   [groupNames]="list.groupNames || []"
+  [errorMessage]="list.errorMessage || ''"
   (generate)="generateForList(list.id)"
   (groupNamesChange)="updateGroupNames(list)"
 ></app-group-generated>
 
-  <button class="btn btn-outline-custom mt-3" (click)="toggleSavedGroupsVisibility(list)">
+<div class="text-center mt-5">
+  <button class="btn btn-outline-custom" (click)="toggleSavedGroupsVisibility(list)">
     {{ list.showSavedGroups ? 'Cacher' : 'Afficher' }} l’historique
   </button>
+</div>
 
   <app-group-history
     *ngIf="list.showSavedGroups"
@@ -27,8 +30,6 @@
        (delete)="deleteSavedGroups(list.id)"
   ></app-group-history>
 
-  <div *ngIf="errorMessage" class="error mt-3 text-danger fw-bold">
-    {{ errorMessage }}
-  </div>
+
 </div>
 </div>

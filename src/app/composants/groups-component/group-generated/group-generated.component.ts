@@ -14,11 +14,14 @@ import { List } from '../../../core/models/list.model';
 export class GroupGeneratedComponent {
   @Input() groups: Group[] = [];
   @Input() groupNames: string[] = [];
- @Input() list!: List;
+  @Input() list!: List;
+
 
   @Output() groupNamesChange = new EventEmitter<string[]>();
   @Output() generate = new EventEmitter<void>();
   showGroups: boolean = false;
+@Input() errorMessage: string = '';
+
   onGenerate() {
     this.generate.emit();
     this.showGroups = true;

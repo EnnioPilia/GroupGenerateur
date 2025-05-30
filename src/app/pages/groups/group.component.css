@@ -1,14 +1,9 @@
-
-
 .parent-page {
   background-color: #9e8167;
-  
   min-height: 100vh;
   box-sizing: border-box;
-
   margin: 0;
   font-weight: 500;
-
 }
 
 .list-section {
@@ -19,20 +14,20 @@
   width: 40%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   padding: 2rem;
-
   height: 100%;
 }
 
-
 .btn-outline-custom {
   color: #523f34;
-  border-color: #c29b7f;
+  border-color: #584134;
   font-weight: 700;
+  background-color: #e2bca1;
+   font-family: "Poiret One", cursive;
+
 }
 
-.btn-outline-custom:hover,
-.btn-outline-custom:focus {
-  background-color: #c29b7f;
+.btn-outline-custom:hover {
+  background-color: #dd8f5e;
   color: #523f34;
   border-color: #946543;
 }
@@ -41,7 +36,6 @@
   font-size: 1rem;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   :host {
     max-width: 100%;

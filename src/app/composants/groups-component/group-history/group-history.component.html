@@ -1,28 +1,39 @@
 <div class="group-history container my-4 p-3 rounded border bg-light">
   <h3 class="text-center mb-4" style="font-family: 'Poiret One', cursive; color: #5e3b2c;">
     Historique des groupes : 
-        <!-- <span style="color: #5a4031;">    {{ list.name }}</span> -->
+        <!-- <span style="color: #5a4031;">    {{ list?.name }}</span> -->
   </h3>
-
-  <div *ngFor="let groups of history; index as i" class="history-set mb-4">
-
-
-    <div *ngFor="let group of groups" class=" group-person mb-3 p-3 ">
-          <h4 class="mb-3" style="color: #3f251a; font-size: 2rem ;font-weight: 700 ;">
+<div *ngIf="history.length === 0" class="text-center text-danger fw-bold mt-3">
+  Aucun groupe généré pour le moment.
+</div>
+<div *ngIf="history.length > 0">
+  <div *ngFor="let groups of history; index as i" 
+       class="group-tirage container my-4 p-3 rounded border" 
+       style="background-color: #702700;">
+  
+    <h4 class="mb-4" style="font-family: 'Poiret One', cursive; color: #5e3b2c;">
       Tirage # {{ i + 1 }}
     </h4>
-      <strong class=" mb-2" style="color: #3f251a; font-size: 1.2rem ; border-bottom: #3f251a solid 1px;">
-        {{ group.name }}
+  
+    <div *ngFor="let group of groups" class="mb-3">
+      <strong style="color: #3f251a; font-size: 1.2rem;">
+        <span style="border-bottom: 1px solid #3f251a;">{{ group.name }}</span>
       </strong>
-      <ul class="list-group" >
-        <li *ngFor="let person of group.persons" class="list-group-item" style="background-color: #dcb49e; border-color: #dcb49e ; color: #523f34; font-weight: 600; ">
-         * {{ person.lastName }} - ({{ person.age }} ans) - {{ person.isFormerDwwm }} 
+  
+      <ul class="list-group mt-2">
+        <li *ngFor="let person of group.persons" class="list-group-item"
+            style="background-color: #ecc4ab; border-color: #ecc4ab; color: #523f34; font-weight: 600;">
+          * {{ person.lastName }} - ({{ person.age }} ans) - {{ person.isFormerDwwm }}
         </li>
       </ul>
     </div>
 
+
   </div>
+  <div class="text-center mt-3">
+
   <button class="btn btn-danger-custom fw-bold px-4" (click)="delete.emit()">
     Supprimer les groupes
   </button>
+</div>
 </div>
