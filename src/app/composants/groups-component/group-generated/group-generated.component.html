@@ -1,0 +1,13 @@
+<div *ngFor="let group of groups; let i = index" class="group">
+  <input
+    type="text"
+    [value]="groupNames[i]"
+    (input)="onGroupNameChange(i, getInputValue($event))"
+  />
+
+  <ul>
+    <li *ngFor="let person of group.persons">
+      {{ person.lastName }}
+    </li>
+  </ul>
+</div>

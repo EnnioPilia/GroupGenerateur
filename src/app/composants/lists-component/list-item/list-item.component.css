@@ -1,0 +1,90 @@
+.bg-list-card {
+  background-color: #f8f1eb; /* couleur douce, proche beige clair */
+  border: 1.5px solid #7a5a49; /* couleur brun chaud pour la bordure */
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(122, 90, 73, 0.15);
+  margin-bottom: 1.5rem;
+  
+}
+
+.bg-list-card .card {
+  background-color: #f8f1eb;
+  border: 1.5px solid #7a5a49;
+  border-radius: 18px;
+  box-shadow: 0 4px 6px rgba(122, 90, 73, 0.1);
+}
+
+.card-body {
+  padding: 1rem 1.5rem;
+      background-color: #f3e5da;
+
+}
+
+.btn-primary-custom {
+  background-color: #a86d4f;
+  color: #f3cfbc;
+  border: 1px solid #50372a;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.btn-primary-custom:hover {
+  background-color: #8b5237;
+}
+
+.btn-secondary-custom {
+  background-color: #d5a365;
+  color: #3a2a20;
+  border: 1px solid #7a5a49;
+  font-weight: 700;
+}
+
+.btn-secondary-custom:hover {
+  background-color: #af7754;
+}
+
+.btn-danger-custom {
+  background-color: #d64545;
+  color: white;
+  font-weight: 700;
+}
+
+.btn-danger-custom:hover {
+  background-color: #b32d2d;
+}
+
+.btn-edit-custom {
+  background-color: rgb(5, 119, 5);
+  color: white;
+  font-weight: 500;
+}
+
+.btn-edit-custom:hover {
+  background-color: rgb(26, 107, 26);
+}
+
+strong.fs-2 {
+  color: #4a2f1e;
+  font-weight: 700;
+}
+
+input.form-control-sm {
+  border-radius: 8px;
+  border: 1.5px solid #7a5a49;
+  color: #4a2f1e;
+  font-weight: 600;
+  
+}
+
+input.form-control-sm:focus {
+  border-color: #a07865;
+  box-shadow: 0 0 5px #a07865;
+  background-color: #f9f0e6;
+}
+
+.d-flex.gap-2 > button {
+  min-width: 110px;
+  font-size: 0.85rem;
+  padding: 0.25rem 0.5rem;
+}
+

@@ -1,0 +1,80 @@
+.bg-form {
+  background-color: #ecd2b6;
+  border: 1.5px solid #7a5a49; /* brun chaud */
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(122, 90, 73, 0.15);
+  padding: 1.5rem;
+  max-width: 400px;
+  margin: 1rem auto;
+}
+
+.form-label {
+  color: #7a5a49; /* brun chaud */
+  font-weight: 600;
+}
+
+.text-brown {
+  color: #7a5a49;
+}
+
+.form-control-custom {
+  border: 1.5px solid #7a5a49;
+  border-radius: 8px;
+  padding: 0.375rem 0.75rem;
+  color: #4a2f1e;
+  font-weight: 500;
+    background-color: #dcb49e;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control-custom:focus {
+  border-color: #a07865;
+  box-shadow: 0 0 6px #a07865;
+  background-color: #f9f0e6;
+  outline: none;
+}
+
+.form-select-custom {
+  border: 1.5px solid #7a5a49;
+  border-radius: 8px;
+  color: #4a2f1e;
+  background-color: #dcb49e;
+  font-weight: 500;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-select-custom:focus {
+  border-color: #a07865;
+  box-shadow: 0 0 6px #a07865;
+  outline: none;
+  background-color: #f9f0e6;
+}
+
+.form-check-input {
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 1.5px solid #7a5a49;
+  background-color: #fff8f1;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.form-check-input:checked {
+  background-color: #7a5a49;
+  border-color: #7a5a49;
+}
+
+.btn-primary-custom {
+  background-color: #a86d4f;
+  color: #f3cfbc;
+  border: 1px solid #50372a;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.btn-primary-custom:hover {
+  background-color: #8b5237;
+}
+
+.w-25 {
+  width: 6rem !important;
+}

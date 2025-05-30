@@ -1,0 +1,45 @@
+<body>
+<div class="page-list">
+  <app-list-header
+    [newListName]="newListName"
+    [errorMessage]="errorMessage"
+    (newListNameChange)="newListName = $event"
+    (create)="createList()"
+  ></app-list-header>
+
+  <ul class="list-unstyled">
+    <app-list-item
+      *ngFor="let list of lists"
+      [list]="list"
+      [selectedListId]="selectedListId"
+      [editingListId]="editingListId"
+      [editedListName]="editedListName"
+      (selectList)="selectList($event)"
+      (editListName)="editListName($event)"
+      (saveListName)="saveListName($event)"
+      (deleteList)="deleteList($event)"
+    >
+      <div *ngIf="selectedListId === list.id" class="row gx-3 p-3 bg-light-custom border-custom rounded-3">
+
+        <!-- Formulaire pour ajouter une personne -->
+        <div class="col-md-6" style="width: 40%;">
+          <app-person-form
+            [formPerson]="formPerson"
+            (submitPerson)="submitPerson()"
+          ></app-person-form>
+        </div>
+
+        <!-- Tableau des personnes dans la liste -->
+        <div class="col-md-6 ms-3">
+          <app-person-table
+            [persons]="list.persons || []"
+            (deletePerson)="deletePerson($event)"
+          ></app-person-table>
+        </div>
+
+      </div>
+    </app-list-item>
+  </ul>
+</div>
+<app-generate-button></app-generate-button>
+</body>

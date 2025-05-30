@@ -1,0 +1,30 @@
+<div *ngFor="let list of lists" class="list-section">
+  <app-group-header
+    [list]="list"
+    [(numberOfGroups)]="numberOfGroups"
+    [(criteria)]="criteria"
+    (generate)="generateForList(list.id)"
+    (delete)="deleteSavedGroups(list.id)"
+  ></app-group-header>
+
+<app-group-generated
+  *ngIf="list.generatedGroups?.length"
+  [groups]="list.generatedGroups || []"
+  [groupNames]="list.groupNames || []"
+  (groupNamesChange)="updateGroupNames(list)"
+></app-group-generated>
+
+
+  <button (click)="toggleSavedGroupsVisibility(list)">
+    {{ list.showSavedGroups ? 'Cacher' : 'Afficher' }} l’historique
+  </button>
+
+  <app-group-history
+    *ngIf="list.showSavedGroups"
+    [listId]="list.id"
+  ></app-group-history>
+
+  <div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
+</div>

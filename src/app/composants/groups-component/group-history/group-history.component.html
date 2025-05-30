@@ -1,0 +1,14 @@
+<div class="group-history">
+  <h3>Historique des groupes</h3>
+  <div *ngFor="let groups of history; index as i" class="history-set">
+    <h4>Génération #{{ i + 1 }}</h4>
+    <div *ngFor="let group of groups" class="group">
+      <strong>{{ group.name }}</strong>
+      <ul>
+        <li *ngFor="let person of group.persons">
+          {{ person.lastName }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

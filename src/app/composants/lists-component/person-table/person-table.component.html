@@ -1,0 +1,36 @@
+<div class="col-md-6 ms-3">
+  <h5 class="text-brown fw-semibold">Liste des personnes :</h5>
+  <div class="" style="width: 590px;">
+    <table class="table table-bordered border-dark table-striped align-middle text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>Nom</th>
+          <th>Genre</th>
+          <th>Français</th>
+          <th>dwwm</th>
+          <th>Technique</th>
+          <th>Profil</th>
+          <th>Âge</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="!persons || persons.length === 0">
+          <td colspan="8" class="text-center text-muted">Aucune personne dans la liste</td>
+        </tr>
+        <tr *ngFor="let person of persons">
+          <td class="nom-cell">{{ person.lastName }}</td>
+          <td>{{ person.gender }}</td>
+          <td>{{ person.frenchLevel }}</td>
+          <td>{{ person.isFormerDwwm ? 'Oui' : 'Non' }}</td>
+          <td>{{ person.technicalLevel }}</td>
+          <td>{{ person.profile }}</td>
+          <td>{{ person.age }}</td>
+          <td class="btnSupp text-center" style="background-color: #b32d2d;">
+            <button (click)="onDeletePerson(person.id)" class="btn btn-Supp btn-sm text-white fw-bold fs-5">✖</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

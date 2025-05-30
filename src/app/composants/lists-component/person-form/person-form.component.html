@@ -1,0 +1,66 @@
+<form (ngSubmit)="onSubmit()" class="p-3 bg-form border-custom rounded-3" style="max-width: 25rem;">
+  <div class="mb-2">
+    <label class="form-label fw-semibold text-brown">Nom :</label>
+    <input
+      type="text"
+      class="form-control form-control-custom"
+      [(ngModel)]="formPerson.lastName"
+      name="lastName"
+      required minlength="3"
+      maxlength="50"
+    />
+  </div>
+  <div class="mb-2">
+    <label class="form-label fw-semibold text-brown">Genre :</label>
+    <select class="form-select form-select-custom" [(ngModel)]="formPerson.gender" name="gender" required>
+      <option value="masculin">Masculin</option>
+      <option value="féminin">Féminin</option>
+      <option value="ne se prononce pas">Ne se prononce pas</option>
+    </select>
+  </div>
+  <div class="mb-2">
+    <label class="form-label fw-semibold text-brown">Aisance en Français :</label>
+    <select class="form-select form-select-custom" [(ngModel)]="formPerson.frenchLevel" name="frenchLevel" required>
+      <option *ngFor="let lvl of [1, 2, 3, 4]" [value]="lvl">{{ lvl }}</option>
+    </select>
+  </div>
+  <div class="form-check d-flex align-items-center mb-2 mt-3">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      [(ngModel)]="formPerson.isFormerDwwm"
+      name="isFormerDwwm"
+      id="dwwmCheck"
+    />
+    <label class="form-check-label text-brown ms-2" for="dwwmCheck">Ancien DWWM</label>
+  </div>
+  <div class="mb-2">
+    <label class="form-label fw-semibold text-brown">Niveau technique :</label>
+    <select class="form-select form-select-custom" [(ngModel)]="formPerson.technicalLevel" name="technicalLevel" required>
+      <option *ngFor="let lvl of [1, 2, 3, 4]" [value]="lvl">{{ lvl }}</option>
+    </select>
+  </div>
+  <div class="mb-2">
+    <label class="form-label fw-semibold text-brown">Profil :</label>
+    <select class="form-select form-select-custom" [(ngModel)]="formPerson.profile" name="profile" required>
+      <option value="timide">Timide</option>
+      <option value="réservé">Réservé</option>
+      <option value="à l’aise">À l’aise</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label fw-semibold text-brown">Âge :</label>
+    <input
+      type="number"
+      class="form-control form-control-custom w-25"
+      [(ngModel)]="formPerson.age"
+      name="age"
+      min="1"
+      max="99"
+      required
+    />
+  </div>
+  <div class="d-grid">
+    <button type="submit" class="btn btn-primary-custom">Ajouter la personne</button>
+  </div>
+</form>

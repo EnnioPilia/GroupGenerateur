@@ -1,0 +1,75 @@
+:host {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 1.5rem;
+}
+
+.bg-group-header {
+  background-color: #ddb393;
+  border: 2px solid #c29b7f;
+  border-radius: 0.75rem;
+  padding: 2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  color: #3a2a20;
+  font-family: "Poiret One", sans-serif;
+}
+
+h2 {
+  text-align: center;
+  color: #5e3b2c;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.group-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.group-controls .form-control-custom {
+  background-color: #bd8e6a;
+  color: #3a2a20;
+  font-weight: 600;
+  width: 70px;
+}
+
+.form-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.form-check-input {
+  background-color: #bd8e6a;
+  border-color: #785235;
+}
+
+.form-check-input:checked {
+  background-color: #6e4b3a !important;
+  border-color: #6e4b3a !important;
+}
+
+label {
+  font-weight: 600;
+  color: #5e3b2c;
+}
+
+@media (max-width: 768px) {
+  .group-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .form-control-custom {
+    width: 100% !important;
+  }
+}
