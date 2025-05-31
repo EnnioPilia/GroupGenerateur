@@ -11,6 +11,7 @@ import { Group } from '../../core/models/group.model';
 import { GroupHeaderComponent } from '../../composants/groups-component/group-header/group-header.component';
 import { GroupGeneratedComponent } from '../../composants/groups-component/group-generated/group-generated.component';
 import { GroupHistoryComponent } from '../../composants/groups-component/group-history/group-history.component';
+import { GroupTitleComponent } from '../../composants/groups-component/group-title/group-title.component';
 
 @Component({
   selector: 'app-group',
@@ -21,6 +22,7 @@ import { GroupHistoryComponent } from '../../composants/groups-component/group-h
     GroupHeaderComponent,
     GroupGeneratedComponent,
     GroupHistoryComponent,
+    GroupTitleComponent
   ],
   templateUrl: './group.component.html',
   styleUrls: ['./group.component.css'],

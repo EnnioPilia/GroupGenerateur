@@ -1,0 +1,25 @@
+.outer-card {
+  background-color: #ebd2c2;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.inner-card {
+  background-color: #ddb393; 
+  border-radius: 7px;
+  padding: 2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.title-text {
+  font-family: 'Poiret One', cursive;
+  color: #5e3b2c;
+  font-weight: bold;
+  font-size: 4rem;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+.outer-card{
+  max-width: 100%;
+} 
+}

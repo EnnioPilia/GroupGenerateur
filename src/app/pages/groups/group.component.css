@@ -1,29 +1,31 @@
 .parent-page {
   background-color: #9e8167;
-  min-height: 100vh;
+  min-height: 100dvh; 
+  width: 100%;
   box-sizing: border-box;
   margin: 0;
   font-weight: 500;
+  overflow-x: hidden; 
+
 }
 
 .list-section {
   background-color: #ebd2c2;
   border: 1.5px solid #c29b7f;
   color: #3a2a20;
-  border-radius: 5rem;
-  width: 40%;
+  border-radius: 1rem;
+  padding: 1.5rem; 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  padding: 2rem;
-  height: 100%;
+  margin-bottom: 1.5rem; 
 }
 
 .btn-outline-custom {
   color: #523f34;
   border-color: #584134;
   font-weight: 700;
-  background-color: #e2bca1;
-   font-family: "Poiret One", cursive;
-
+  font-size: 1.875rem; 
+  background-color: #be8962;
+  font-family: "Poiret One", cursive;
 }
 
 .btn-outline-custom:hover {
@@ -32,13 +34,77 @@
   border-color: #946543;
 }
 
-.error {
-  font-size: 1rem;
+@media (min-width: 768px) and (max-width: 1024px) {
+  .list-section {
+    max-width: 100% !important;
+  }
+
+  .col-md-5 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
 }
 
+
 @media (max-width: 768px) {
-  :host {
-    max-width: 100%;
-    padding: 0 1rem;
+  .btn-outline-custom {
+    font-size: 1.375rem; 
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn-outline-custom {
+    font-size: 1.125rem; 
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+}
+
+.group-title-wrapper {
+  background-color: #c29b7f;
+  border-radius: 1rem;
+  padding: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.group-title-inner {
+  background-color: #ebd2c2;
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.group-title-inner h2 {
+  font-family: 'Poiret One', cursive;
+  color: #5e3b2c;
+  font-weight: bold;
+  margin: 0;
+}
+
+
+@media (max-width: 768px) {
+  .group-title-inner {
+    padding: 1.5rem;
+  }
+
+  .group-title-inner h2 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .group-title-wrapper {
+    padding: 0.5rem;
+  }
+
+  .group-title-inner {
+    padding: 1rem;
+  }
+
+  .group-title-inner h2 {
+    font-size: 1.3rem;
   }
 }

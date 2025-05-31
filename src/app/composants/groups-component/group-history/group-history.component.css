@@ -1,6 +1,5 @@
  .group-history {
    font-family: "Poiret One", cursive;
-   max-width: 600px;
    background-color: #be8962 !important;
    border-radius: 0.375rem;
    border-radius: 15%;
@@ -12,7 +11,6 @@
  }
  .group-tirage{
      font-family: "Poiret One", cursive;
-   max-width: 600px;
    background-color: #cca289 !important;
    border-radius: 0.375rem;
    border-radius: 15%;
