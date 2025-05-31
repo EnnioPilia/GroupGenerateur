@@ -10,9 +10,15 @@
 
         <app-group-header
           [list]="list"
-          [(numberOfGroups)]="numberOfGroups"
-          [(criteria)]="criteria"
-          (generate)="generateForList(list.id)">
+          [numberOfGroups]="numberOfGroups"
+            (numberOfGroupsChange)="numberOfGroups = $event"
+
+          [criteria]="criteria"
+          [groupNames]="list.groupNames || []"
+          [tirageName]="list.tirageName || ''"
+          (generate)="generateForList(list.id)"
+          (groupNamesChange)="updateGroupNames(list, $event)"
+          (tirageNameChange)="updateTirageName(list, $event)">
         </app-group-header>
 
         <app-group-generated
@@ -21,13 +27,25 @@
           [groupNames]="list.groupNames || []"
           [errorMessage]="list.errorMessage || ''"
           (generate)="generateForList(list.id)"
-          (groupNamesChange)="updateGroupNames(list)">
+          [groups]="list.generatedGroups || []"
+          [groupNames]="list.groupNames || []"
+          (groupNamesChange)="updateGroupNames(list, $event)">
         </app-group-generated>
 
+          <div class="text-center w-100 py-3 " *ngIf="list.showGroups && !list.groupsSaved">
+            <button class="btn btn-success w-45 py-2" (click)="archiveGroups(list.id)">
+              Archiver ce tirage
+            </button>
+          </div>
+
         <div class="text-center w-100 py-3 mt-4">
-          <button class="btn btn-outline-custom w-100 py-3" (click)="toggleSavedGroupsVisibility(list)">
+          <button 
+            class="btn w-100 py-3" 
+            [ngClass]="list.showSavedGroups ? 'btn-orange-custom' : 'btn-outline-custom'"
+            (click)="toggleSavedGroupsVisibility(list)">
             {{ list.showSavedGroups ? 'Cacher' : 'Afficher' }} l’historique
           </button>
+
         </div>
 
         <app-group-history

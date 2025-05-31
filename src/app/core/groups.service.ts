@@ -6,14 +6,28 @@ import { Person } from './models/person.model';
 @Injectable({ providedIn: 'root' })
 export class GroupsService {
     constructor() { }
-
     generateGroups(
         persons: Person[],
         numberOfGroups: number,
         criteria: { mixerAncienDwwm: boolean; mixerAge: boolean },
         listId: string
     ): Group[] {
-        if (persons.length < numberOfGroups) return [];
+        const groups: Group[] = Array.from({ length: numberOfGroups }, (_, i) => ({
+            id: `${listId}-group-${i + 1}`, // id obligatoire
+            name: `Groupe ${i + 1}`,
+            persons: []
+        }));
+
+        if (!persons || persons.length === 0) {
+            return groups;
+        }
+
+        if (persons.length < numberOfGroups) {
+            persons.forEach((person, idx) => {
+                groups[idx].persons.push(person);
+            });
+            return groups;
+        }
 
         if (!criteria.mixerAncienDwwm && !criteria.mixerAge) {
             return this.generateWithoutCriteria(persons, numberOfGroups);
@@ -27,7 +41,7 @@ export class GroupsService {
             return this.generateByAgeOnly(persons, numberOfGroups);
         }
 
-        return [];
+        return groups;
     }
 
     private generateWithoutCriteria(persons: Person[], numberOfGroups: number): Group[] {

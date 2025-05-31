@@ -36,7 +36,9 @@ export class ListService {
       id: crypto.randomUUID(),
       name,
       persons: [],
-      draws: 0
+      draws: 0,
+          generatedGroups: [],       // ✅ Ajouté
+    groupNames: [],
     };
     lists.push(newList);
     this.saveLists(lists);

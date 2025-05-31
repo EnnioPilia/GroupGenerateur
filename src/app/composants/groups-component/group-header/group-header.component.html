@@ -1,42 +1,54 @@
-<div class="bg-list-header rounded border-custom p-4 ">
-  <h2 >
-    Choisissez les critères 
-  </h2>
+<div class="bg-list-header rounded border-custom p-4">
+  <div class="text">
+    <h2>
+      Choisissez les critères pour : {{ list.name }}
+    </h2>
+  </div>
 
-  <div class="d-flex align-items-center gap-4 ">
+  <div class="d-flex flex-wrap gap-5 mt-2 mb-5 align-items-center">
+    <div class="flex-grow-1" style="min-width: 200px;">
+      <label for="tirageName" class="form-label mb-1 fw-bold text-brown">Nom du tirage :</label>
+      <input id="tirageName" type="text" class="form-control form-control-custom fw-bold" [(ngModel)]="tirageName"
+        (ngModelChange)="tirageNameChange.emit($event)" />
+    </div>
 
-  <div class="d-flex align-items-center gap-4 mb-3" >
-    <div class="d-flex align-items-center mt-4" style="gap: 10px">
-      <label for="numberOfGroups" class="form-label mb-0 fw-bold text-brown">
-        Nombre  :
-      </label>
-      <input type="number" id="numberOfGroups" [(ngModel)]="numberOfGroups" (ngModelChange)="onNumberChange($event)"
-        min="2" required class="form-control form-control-custom fw-bold"
-        style="width: 60px; background-color: #bd8e6a; border: 1px solid #7a5a49;" />
+    <div class="flex-grow-1" style="min-width: 200px;">
+      <label for="groupNames" class="form-label mb-1 fw-bold text-brown">Noms des groupes :</label>
+      <input id="groupNames" type="text" class="form-control form-control-custom fw-bold"
+        [value]="groupNames.join(', ')" (input)="onInputChange($event)"  />
     </div>
   </div>
 
-  <div class="d-flex align-items-center gap-4 mx-3 mt-2" style="max-width: 600px">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="mixerAncienDwwm" [(ngModel)]="criteria.mixerAncienDwwm"
-        (change)="onCriteriaChange()" />
-      <label class="form-check-label text-brown fw-bold" for="mixerAncienDwwm">
-        Mixer DWWM
-      </label>
-    </div>
+  <div class="d-flex align-items-center gap-2 mb-3">
+    <label for="numberOfGroups" class="form-label mb-0 fw-bold text-brown"
+      style="flex-shrink: 0; font-size: 18px; min-width: 140px;">
+      Nombre de groupe:
+    </label>
+    <input type="number" [value]="numberOfGroups" (input)="onNumberChange($event)"
+      class="form-control form-control-custom fw-bold px-2"
+      style="width: 55px; background-color: #bd8e6a; border: 1px solid #7a5a49; height: 30px;" />
 
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="mixerAge" [(ngModel)]="criteria.mixerAge"
-        (change)="onCriteriaChange()" />
-      <label class="form-check-label text-brown fw-bold" for="mixerAge">
-        Mixer par âge
-      </label>
-    </div>
-  </div>
 
+    <div class="d-flex align-items-center gap-4 ms-4 mx-3 mt-2 flex-wrap" style="max-width: 600px;">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="mixerAncienDwwm" [(ngModel)]="criteria.mixerAncienDwwm"
+        
+          (change)="criteriaChange.emit(criteria)" />
+        <label class="form-check-label text-brown fw-bold" for="mixerAncienDwwm">
+          Mixer DWWM
+        </label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="mixerAge" [(ngModel)]="criteria.mixerAge"
+          (change)="criteriaChange.emit(criteria)" />
+        <label class="form-check-label text-brown fw-bold" for="mixerAge">
+          Mixer par âge
+        </label>
+      </div>
+    </div>
   </div>
 
   <div class="d-flex justify-content-center gap-3 flex-wrap mt-4">
 
   </div>
-</div>

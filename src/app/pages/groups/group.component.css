@@ -34,6 +34,26 @@
   border-color: #946543;
 }
 
+.btn-orange-custom {
+  background-color: #dd8f5e; 
+  color: #523f34;
+  border-color: #946543;
+  font-weight: 700;
+  font-size: 1.875rem;
+  font-family: "Poiret One", cursive;
+}
+
+.btn-orange-custom:hover {
+  background-color: #be8962;
+  color: #523f34;
+  border-color: #584134;
+}
+.btn-success{
+    font-family: "Poiret One", cursive;
+    font-weight: 500;
+    font-size: 20px;
+    border-color: #5c4232;
+}
 @media (min-width: 768px) and (max-width: 1024px) {
   .list-section {
     max-width: 100% !important;

@@ -29,12 +29,10 @@ import { GroupTitleComponent } from '../../composants/groups-component/group-tit
 })
 export class GroupGeneratorComponent implements OnInit {
   @ViewChild(GroupHistoryComponent) groupHistoryComponent?: GroupHistoryComponent;
+  archives: any[] = [];     // Où tu stockes les archives
 
-  lists: List[] = []; // <-- initialisé vide ici
-  selectedListId: string | null = null;
+  lists: List[] = [];
   numberOfGroups = 2;
-  errorMessage = '';
-
   criteria = {
     mixerAncienDwwm: false,
     mixerAge: false,
@@ -43,60 +41,70 @@ export class GroupGeneratorComponent implements OnInit {
   constructor(
     private listService: ListService,
     private groupsService: GroupsService
-  ) {}
+  ) { }
 
+  ngOnInit(): void {
+    this.lists = this.listService.getLists();
 
-ngOnInit(): void {
-  this.lists = this.listService.getLists();
+    this.lists.forEach(list => {
+      if (!list.groupNames) list.groupNames = [];
+      if (!list.generatedGroups) list.generatedGroups = [];
 
-this.lists.forEach(list => {
-  if (!list.groupNames) list.groupNames = [];
-  list.generatedGroups = [];
-
-  const history = this.groupsService.getHistory(list.id);
-  list.groupsSaved = history.length > 0;
-  list.showSavedGroups = list.groupsSaved;
-  list.showGroups = false; // ✅ Initialise à false
-});
-
-}
-
-generateForList(listId: string): void {
-  const list = this.lists.find(l => l.id === listId);
-  if (!list) return;
-  
-  list.errorMessage = ''; // reset erreur locale à chaque tentative
-
-  if (!list.persons || list.persons.length < this.numberOfGroups) {
-    list.errorMessage = 'Pas assez de personnes pour former autant de groupes.';
-    list.generatedGroups = [];
-    list.showGroups = false;  // cache les groupes
-    return;
+      const history = this.groupsService.getHistory(list.id);
+      list.groupsSaved = history.length > 0;
+      list.showSavedGroups = list.groupsSaved;
+      list.showGroups = false;
+      list.errorMessage = '';
+    });
   }
 
-  const generatedGroups = this.groupsService.generateGroups(
-    list.persons,
-    this.numberOfGroups,
-    this.criteria,
-    listId
-  );
+  generateForList(listId: string): void {
+    const list = this.lists.find(l => l.id === listId);
+    if (!list) return;
+  console.log('Nombre de groupes choisi:', this.numberOfGroups);
 
-  if (!generatedGroups || generatedGroups.length === 0) {
-    this.errorMessage = 'Impossible de générer des groupes différents. Essayez de modifier les critères.';
-    list.generatedGroups = [];
-    list.showGroups = false;  // cache les groupes
-    return;
+    list.errorMessage = '';
+
+    if (!list.persons || list.persons.length < this.numberOfGroups) {
+      list.errorMessage = 'Pas assez de personnes pour former autant de groupes.';
+      list.generatedGroups = [];
+      list.showGroups = false;
+      return;
+    }
+
+    const generatedGroups = this.groupsService.generateGroups(
+      list.persons,
+      this.numberOfGroups,
+      this.criteria,
+      listId
+    );
+
+    if (!generatedGroups || generatedGroups.length === 0) {
+      list.errorMessage = 'Impossible de générer des groupes différents. Essayez de modifier les critères.';
+      list.generatedGroups = [];
+      list.showGroups = false;
+      return;
+    }
+
+    list.generatedGroups = generatedGroups;
+
+    // Initialiser les noms de groupe (avec fallback "Groupe 1", etc)
+list.groupNames = generatedGroups.map((g, i) => g.name || `Groupe ${i + 1}`);
+
+    list.groupsSaved = false;
+    list.showSavedGroups = false;
+    list.showGroups = true;
+
+    this.groupHistoryComponent?.reload();
   }
 
-  list.generatedGroups = generatedGroups;
-  list.groupNames = generatedGroups.map(g => g.name);
-  list.groupsSaved = true;
-  list.showSavedGroups = true;
-  list.showGroups = true;  // <--- affiche les groupes générés
-  list.errorMessage = '';
-
-  this.groupsService.saveGroupsToHistory(listId, generatedGroups);
-  this.groupHistoryComponent?.reload();
+updateGroupNames(list: List, groupNames: string[]) {
+  list.groupNames = [...groupNames];
+  list.generatedGroups?.forEach((group, i) => {
+    if (groupNames[i]) {
+      group.name = groupNames[i];
+    }
+  });
 }
 
 
@@ -113,17 +121,22 @@ generateForList(listId: string): void {
     this.groupHistoryComponent?.reload();
   }
 
-  updateGroupNames(list: List): void {
-    if (!list.generatedGroups || !list.groupNames) return;
-
-    list.generatedGroups.forEach((group, i) => {
-      if (list.groupNames && list.groupNames[i]) {
-        group.name = list.groupNames[i];
-      }
-    });
-  }
-
   toggleSavedGroupsVisibility(list: List): void {
     list.showSavedGroups = !list.showSavedGroups;
+  }
+
+  updateTirageName(list: List, newTirageName: string): void {
+    list.tirageName = newTirageName;
+  }
+
+  archiveGroups(listId: string): void {
+    const list = this.lists.find(l => l.id === listId);
+    if (!list || !list.generatedGroups) return;
+
+    this.groupsService.saveGroupsToHistory(listId, list.generatedGroups);
+    list.groupsSaved = true;
+    list.showSavedGroups = true;
+
+    this.groupHistoryComponent?.reload();
   }
 }

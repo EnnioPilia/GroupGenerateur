@@ -14,7 +14,7 @@ import { List } from '../../../core/models/list.model';
 })
 export class GroupHistoryComponent implements OnInit {
   @Input() listId!: string;
-  list?: List;  // On stocke la liste complète ici
+  list?: List;  
   history: Group[][] = [];
   @Output() delete = new EventEmitter<void>();
 

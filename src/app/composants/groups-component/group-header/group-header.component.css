@@ -11,10 +11,23 @@
   margin: 0 auto 1.5rem;
 }
 
-
 h2 {
   color: #5e3b2c;
-  font-size: 2.5rem;
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  border-bottom: 1px solid #7a5a49;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.text {
+  text-align: center;
+}
+
+h3 {
+  color: #5e3b2c;
+  font-size: 3rem;
   font-weight: 700;
   text-align: center;
 }
@@ -24,6 +37,7 @@ h2 {
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
+  
 }
 
 .bg-list-header label.text-brown {
@@ -32,11 +46,12 @@ h2 {
 }
 
 .bg-list-header input.form-control-custom {
-  width: 70px;
   background-color: #bd8e6a;
   border-color: #c29b7f;
   color: #3a2a20;
   font-weight: 600;
+    border-color: #6e4b3a !important;
+
 }
 
 .bg-list-header .form-check-input {
@@ -68,6 +83,7 @@ h2 {
   background-color: #8e5e3f;
   border-color: #715437;
 }
+
 
 .bg-list-header .btn-danger-custom {
   background-color: #d9534f;

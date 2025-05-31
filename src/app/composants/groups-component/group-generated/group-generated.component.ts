@@ -15,12 +15,13 @@ export class GroupGeneratedComponent {
   @Input() groups: Group[] = [];
   @Input() groupNames: string[] = [];
   @Input() list!: List;
+  history: Group[][] = [];
 
 
   @Output() groupNamesChange = new EventEmitter<string[]>();
   @Output() generate = new EventEmitter<void>();
   showGroups: boolean = false;
-@Input() errorMessage: string = '';
+  @Input() errorMessage: string = '';
 
   onGenerate() {
     this.generate.emit();
@@ -28,10 +29,16 @@ export class GroupGeneratedComponent {
   }
   onGroupNameChange(index: number, newName: string) {
     this.groupNames[index] = newName;
-    this.groupNamesChange.emit(this.groupNames);
+    if (this.groups && this.groups[index]) {
+      this.groups[index].name = newName;
+    }
+    this.groupNamesChange.emit([...this.groupNames]); // on envoie un nouveau tableau pour Angular
   }
 
+
   getInputValue(event: Event): string {
-    return (event.target as HTMLInputElement).value;
+    const input = event.target as HTMLInputElement;
+    return input.value;
   }
+
 }
