@@ -5,7 +5,7 @@
     </h2>
   </div>
 
-  <div class="d-flex flex-wrap gap-5 mt-2 mb-5 align-items-center">
+  <div class="d-flex flex-wrap gap-5 mt-2 mb-4 align-items-center">
     <div class="flex-grow-1" style="min-width: 200px;">
       <label for="tirageName" class="form-label mb-1 fw-bold text-brown">Nom du tirage :</label>
       <input id="tirageName" type="text" class="form-control form-control-custom fw-bold" [(ngModel)]="tirageName"
@@ -15,7 +15,7 @@
     <div class="flex-grow-1" style="min-width: 200px;">
       <label for="groupNames" class="form-label mb-1 fw-bold text-brown">Noms des groupes :</label>
       <input id="groupNames" type="text" class="form-control form-control-custom fw-bold"
-        [value]="groupNames.join(', ')" (input)="onInputChange($event)"  />
+        [value]="groupNames.join(', ')" (input)="onInputChange($event) " />
     </div>
   </div>
 
@@ -24,15 +24,14 @@
       style="flex-shrink: 0; font-size: 18px; min-width: 140px;">
       Nombre de groupe:
     </label>
-    <input type="number" [value]="numberOfGroups" (input)="onNumberChange($event)"
-      class="form-control form-control-custom fw-bold px-2"
+    <input type="number" [value]="numberOfGroups" (input)="onNumberChange($event) " min="2"
+      oninput="if(this.value < 2) this.value = 2" class="form-control form-control-custom fw-bold px-2 mt-1"
       style="width: 55px; background-color: #bd8e6a; border: 1px solid #7a5a49; height: 30px;" />
 
 
     <div class="d-flex align-items-center gap-4 ms-4 mx-3 mt-2 flex-wrap" style="max-width: 600px;">
       <div class="form-check">
         <input class="form-check-input" type="checkbox" id="mixerAncienDwwm" [(ngModel)]="criteria.mixerAncienDwwm"
-        
           (change)="criteriaChange.emit(criteria)" />
         <label class="form-check-label text-brown fw-bold" for="mixerAncienDwwm">
           Mixer DWWM

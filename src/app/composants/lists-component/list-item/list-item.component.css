@@ -1,5 +1,5 @@
 .bg-list-card {
-  background-color: #f8f1eb; /* couleur douce, proche beige clair */
+  background-color: #f1d3b9; /* couleur douce, proche beige clair */
   border: 1.5px solid #7a5a49; /* couleur brun chaud pour la bordure */
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(122, 90, 73, 0.15);
@@ -16,12 +16,12 @@
 
 .card-body {
   padding: 1rem 1.5rem;
-      background-color: #f3e5da;
+  background-color: #f3dfcf;
 
 }
 
 .btn-primary-custom {
-  background-color: #a86d4f;
+  background-color: #ac4c1d;
   color: #f3cfbc;
   border: 1px solid #50372a;
   font-weight: 700;

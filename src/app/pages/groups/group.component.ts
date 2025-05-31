@@ -53,6 +53,7 @@ export class GroupGeneratorComponent implements OnInit {
       const history = this.groupsService.getHistory(list.id);
       list.groupsSaved = history.length > 0;
       list.showSavedGroups = list.groupsSaved;
+      list.showSavedGroups = false;
       list.showGroups = false;
       list.errorMessage = '';
     });
