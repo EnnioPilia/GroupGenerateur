@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Person } from './models/person.model';  
+import { Person } from './models/person.model';
 import { List } from './models/list.model';
 
 @Injectable({
@@ -30,15 +30,15 @@ export class ListService {
   addList(name: string): boolean {
     const lists = this.getLists();
     if (lists.find(l => l.name.toLowerCase() === name.toLowerCase())) {
-      return false; 
+      return false;
     }
     const newList: List = {
       id: crypto.randomUUID(),
       name,
       persons: [],
       draws: 0,
-          generatedGroups: [],       // ✅ Ajouté
-    groupNames: [],
+      generatedGroups: [],
+      groupName: [],
     };
     lists.push(newList);
     this.saveLists(lists);
@@ -56,7 +56,7 @@ export class ListService {
     if (!listToUpdate) return false;
 
     if (lists.some(l => l.name.toLowerCase() === newName.toLowerCase() && l.id !== id)) {
-      return false; // nom déjà utilisé
+      return false; 
     }
 
     listToUpdate.name = newName;

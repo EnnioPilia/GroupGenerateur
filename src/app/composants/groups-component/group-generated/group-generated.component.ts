@@ -12,14 +12,11 @@ import { List } from '../../../core/models/list.model';
   styleUrls: ['./group-generated.component.css']
 })
 export class GroupGeneratedComponent {
-  @Input() groups: Group[] = [];
-  @Input() groupNames: string[] = [];
+@Input() groups: Group[] = [];
   @Input() list!: List;
-  history: Group[][] = [];
 
-
-  @Output() groupNamesChange = new EventEmitter<string[]>();
   @Output() generate = new EventEmitter<void>();
+
   showGroups: boolean = false;
   @Input() errorMessage: string = '';
 
@@ -27,18 +24,15 @@ export class GroupGeneratedComponent {
     this.generate.emit();
     this.showGroups = true;
   }
-  onGroupNameChange(index: number, newName: string) {
-    this.groupNames[index] = newName;
-    if (this.groups && this.groups[index]) {
-      this.groups[index].name = newName;
-    }
-    this.groupNamesChange.emit([...this.groupNames]); // on envoie un nouveau tableau pour Angular
-  }
 
+  // onGroupNameChange(index: number, newName: string) {
+  //   if (this.groups && this.groups[index]) {
+  //     this.groups[index].name = newName;
+  //   }
+  // }
 
   getInputValue(event: Event): string {
     const input = event.target as HTMLInputElement;
     return input.value;
   }
-
 }

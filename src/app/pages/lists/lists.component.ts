@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewEncapsulation  } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { ListService } from '../../core/list.services';
 import { List } from '../../core/models/list.model';
@@ -26,7 +26,7 @@ import { PersonTableComponent } from '../../composants/lists-component/person-ta
     ListHeaderComponent,
     GenerateButtonComponent
   ],
-    encapsulation: ViewEncapsulation.None  // <--- Important !
+  encapsulation: ViewEncapsulation.None  // <--- Important !
 
 })
 export class ListsComponent implements OnInit {
@@ -49,7 +49,7 @@ export class ListsComponent implements OnInit {
     age: null,
   };
 
-  constructor(private listService: ListService, private router: Router) {}
+  constructor(private listService: ListService, private router: Router) { }
 
   ngOnInit() {
     this.loadLists();
@@ -98,7 +98,6 @@ export class ListsComponent implements OnInit {
       this.persons = list ? list.persons : [];
     }
 
-    // Reset form
     this.formPerson = {
       lastName: '',
       gender: '',
@@ -123,7 +122,6 @@ export class ListsComponent implements OnInit {
         selectedList.persons.push(newPerson);
         this.listService.updateList(selectedList.id, selectedList.name, selectedList.persons);
 
-        // Reset form
         this.formPerson = {
           lastName: '',
           gender: '',
@@ -161,19 +159,18 @@ export class ListsComponent implements OnInit {
     }
   }
 
- saveListName(listId: string) {
-  const list = this.lists.find(l => l.id === listId);
-  if (list && this.editedListName.trim()) {
-    list.name = this.editedListName.trim();
-    this.listService.updateList(list.id, list.name, list.persons);
-    this.editingListId = null;
-    this.editedListName = '';
-    this.loadLists();
+  saveListName(listId: string) {
+    const list = this.lists.find(l => l.id === listId);
+    if (list && this.editedListName.trim()) {
+      list.name = this.editedListName.trim();
+      this.listService.updateList(list.id, list.name, list.persons);
+      this.editingListId = null;
+      this.editedListName = '';
+      this.loadLists();
+    }
   }
-}
-
 
   goToGroupGenerator() {
-  this.router.navigate(['/group']);
+    this.router.navigate(['/group']);
   }
 }

@@ -7,13 +7,15 @@ export interface List {
   name: string;
   persons: Person[];
   draws: number;
+  
   tirageName?: string;  
+  groupName?: string[];
+
   generatedGroups: Group[];  
   groupsSaved?: boolean;
-  groupNames?: string[];
   showSavedGroups?: boolean;
   showGroups?: boolean; 
   errorMessage?: string;  
-    criteria?: { mixerAncienDwwm: boolean; mixerAge: boolean };
+  criteria?: { mixerAncienDwwm: boolean; mixerAge: boolean };
 
 }

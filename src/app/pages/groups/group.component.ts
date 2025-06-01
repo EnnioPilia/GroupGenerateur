@@ -29,9 +29,10 @@ import { GroupTitleComponent } from '../../composants/groups-component/group-tit
 })
 export class GroupGeneratorComponent implements OnInit {
   @ViewChild(GroupHistoryComponent) groupHistoryComponent?: GroupHistoryComponent;
-  archives: any[] = [];     // Où tu stockes les archives
+  archives: any[] = [];
 
   lists: List[] = [];
+
   numberOfGroups = 2;
   criteria = {
     mixerAncienDwwm: false,
@@ -47,7 +48,7 @@ export class GroupGeneratorComponent implements OnInit {
     this.lists = this.listService.getLists();
 
     this.lists.forEach(list => {
-      if (!list.groupNames) list.groupNames = [];
+      if (!list.groupName) list.groupName = [];
       if (!list.generatedGroups) list.generatedGroups = [];
 
       const history = this.groupsService.getHistory(list.id);
@@ -57,12 +58,13 @@ export class GroupGeneratorComponent implements OnInit {
       list.showGroups = false;
       list.errorMessage = '';
     });
+    
   }
 
   generateForList(listId: string): void {
     const list = this.lists.find(l => l.id === listId);
     if (!list) return;
-  console.log('Nombre de groupes choisi:', this.numberOfGroups);
+    console.log('Nombre de groupes choisi:', this.numberOfGroups);
 
     list.errorMessage = '';
 
@@ -79,6 +81,9 @@ export class GroupGeneratorComponent implements OnInit {
       this.criteria,
       listId
     );
+    if (!list.groupName || list.groupName.length !== list.generatedGroups.length) {
+      list.groupName = list.generatedGroups.map((_, i) => `Groupe ${i + 1}`);
+    }
 
     if (!generatedGroups || generatedGroups.length === 0) {
       list.errorMessage = 'Impossible de générer des groupes différents. Essayez de modifier les critères.';
@@ -89,8 +94,7 @@ export class GroupGeneratorComponent implements OnInit {
 
     list.generatedGroups = generatedGroups;
 
-    // Initialiser les noms de groupe (avec fallback "Groupe 1", etc)
-list.groupNames = generatedGroups.map((g, i) => g.name || `Groupe ${i + 1}`);
+    list.groupName = generatedGroups.map(() => `Entrez le nom du groupe`);
 
     list.groupsSaved = false;
     list.showSavedGroups = false;
@@ -99,14 +103,14 @@ list.groupNames = generatedGroups.map((g, i) => g.name || `Groupe ${i + 1}`);
     this.groupHistoryComponent?.reload();
   }
 
-updateGroupNames(list: List, groupNames: string[]) {
-  list.groupNames = [...groupNames];
-  list.generatedGroups?.forEach((group, i) => {
-    if (groupNames[i]) {
-      group.name = groupNames[i];
-    }
-  });
-}
+  updateGroupNames(list: List, newGroupName: string) {
+    // Si tu veux que tous les groupes aient ce même nom
+    list.groupName = list.generatedGroups.map(() => newGroupName);
+
+    list.generatedGroups.forEach(group => {
+      group.name = newGroupName;
+    });
+  }
 
 
   deleteSavedGroups(listId: string): void {

@@ -11,12 +11,6 @@
       <input id="tirageName" type="text" class="form-control form-control-custom fw-bold" [(ngModel)]="tirageName"
         (ngModelChange)="tirageNameChange.emit($event)" />
     </div>
-
-    <div class="flex-grow-1" style="min-width: 200px;">
-      <label for="groupNames" class="form-label mb-1 fw-bold text-brown">Noms des groupes :</label>
-      <input id="groupNames" type="text" class="form-control form-control-custom fw-bold"
-        [value]="groupNames.join(', ')" (input)="onInputChange($event) " />
-    </div>
   </div>
 
   <div class="d-flex align-items-center gap-2 mb-3">

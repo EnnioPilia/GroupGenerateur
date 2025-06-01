@@ -7,30 +7,25 @@
 
     <div *ngFor="let list of lists" class="col-12 col-md-5 ">
       <div class="list-section p-4 ">
-
         <app-group-header
           [list]="list"
           [numberOfGroups]="numberOfGroups"
-            (numberOfGroupsChange)="numberOfGroups = $event"
-
+          (numberOfGroupsChange)="numberOfGroups = $event"
           [criteria]="criteria"
-          [groupNames]="list.groupNames || []"
+          [groupName]="list.groupName && list.groupName.length > 0 ? list.groupName[0] : ''"
           [tirageName]="list.tirageName || ''"
           (generate)="generateForList(list.id)"
-          (groupNamesChange)="updateGroupNames(list, $event)"
+          (groupNameChange)="updateGroupNames(list, $event)"
           (tirageNameChange)="updateTirageName(list, $event)">
         </app-group-header>
 
         <app-group-generated
           [list]="list"
           [groups]="list.generatedGroups || []"
-          [groupNames]="list.groupNames || []"
           [errorMessage]="list.errorMessage || ''"
-          (generate)="generateForList(list.id)"
-          [groups]="list.generatedGroups || []"
-          [groupNames]="list.groupNames || []"
-          (groupNamesChange)="updateGroupNames(list, $event)">
+          (generate)="generateForList(list.id)">
         </app-group-generated>
+
 
           <div class="text-center w-100 py-3 " *ngIf="list.showGroups && !list.groupsSaved">
             <button class="btn btn-success w-45 py-2" (click)="archiveGroups(list.id)">

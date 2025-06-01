@@ -5,32 +5,36 @@
     <button class="btn btn-primary-custom fw-bold p-3 px-5" (click)="onGenerate()">
       Générer les groupes
     </button>
-
   </div>
+
   <div *ngIf="errorMessage" class="error text-danger fw-bold mb-3 text-center">
     {{ errorMessage }}
   </div>
   <div *ngIf="showGroups">
 
-    <div *ngIf="list?.tirageName" class="text-center mb-3">
+    <div *ngIf="list?.tirageName" class="text-center mb-3 p-1">
       <h4 class="fw-bold text-uppercase text-brown tirageName">
         {{ list.tirageName }}
       </h4>
-
     </div>
-    <div *ngFor="let group of groups; let i = index" class="group card mb-4  shadow-sm">
-      <div class="mb-3">
-        <input type="text" [(ngModel)]="groupNames[i]" (ngModelChange)="onGroupNameChange(i, $event)"
-          class="form-control fw-bold group-input px-0" placeholder="Nom du groupe" />
-      </div>
 
-      <ul class="list-group group-list px-4">
-        <li *ngFor="let person of group.persons" class="list-group-item group-list-item mb-3 p-3">
-          {{ person.lastName }} {{ person.age }} ans {{ person.isFormerDwwm ? '(Ancien DWWM)' : '' }}
-        </li>
-      </ul>
+<div *ngIf="list.generatedGroups?.length && list.groupName">
+  <div *ngFor="let group of list.generatedGroups; let i = index" class="group card mb-4 shadow-sm p-3">
+    <input 
+      type="text" 
+      class="form-label mb-1 fw-bold text-brown mb-5 mt-3 p-2 " 
+      [(ngModel)]="list.groupName[i]" 
+      placeholder="Entrez le nom du groupe" 
+    />
+    <ul class="list-group group-list px-4">
+      <li *ngFor="let person of group.persons" class="list-group-item group-list-item mb-3 p-3">
+        {{ person.lastName }} {{ person.age }} ans {{ person.isFormerDwwm ? '(Ancien DWWM)' : '' }}
+      </li>
+    </ul>
+  </div>
+</div>
+
 
 
     </div>
   </div>
-</div>

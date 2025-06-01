@@ -16,28 +16,30 @@ export class GroupHeaderComponent {
     mixerAncienDwwm: false,
     mixerAge: false
   };
-  @Input() groupNames: string[] = [];
-  @Output() groupNamesChange = new EventEmitter<string[]>();
+  @Input() groupName: string='';
+  @Output() groupNameChange = new EventEmitter<string>();
+
   @Input() tirageName: string = '';
   @Output() tirageNameChange = new EventEmitter<string>();
+
   @Output() generate = new EventEmitter<void>();
   @Output() delete = new EventEmitter<void>();
   @Output() criteriaChange = new EventEmitter<any>();
 
-@Input() numberOfGroups!: number;
-@Output() numberOfGroupsChange = new EventEmitter<number>();
+  @Input() numberOfGroups!: number;
+  @Output() numberOfGroupsChange = new EventEmitter<number>();
 
-onNumberChange(event: any) {
-  const value = +event.target.value;
-  this.numberOfGroupsChange.emit(value);
-}
+  onNumberChange(event: any) {
+    const value = +event.target.value;
+    this.numberOfGroupsChange.emit(value);
+  }
   onCriteriaChange() {
     this.criteriaChange.emit(this.criteria);
   }
-  onGroupNamesInput(value: string) {
-    const groups = value.split(',').map(s => s.trim());
-    this.groupNamesChange.emit(groups);
-  }
+  // onGroupNamesInput(value: string) {
+  //   const groups = value.split(',').map(s => s.trim());
+  //   this.groupNamesChange.emit(groups);
+  // }
   onInputChange(event: Event): void {
     const input = event.target as HTMLInputElement;
     const value = input?.value || ''; // <- sécurisé contre null
