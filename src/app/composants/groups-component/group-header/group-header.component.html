@@ -3,8 +3,8 @@
 
   <div class="d-flex flex-wrap gap-4 justify-content-between align-items-center mb-4">
 
-    <div class="d-flex align-items-center gap-3 flex-grow-1" style="width: 300px;">
-      <label for="tirageName" class="form-label fw-bold text-brown mb-0" style="min-width: 130px; font-size: 25px;">
+<div class="d-flex flex-wrap gap-4 justify-content-between align-items-center ">
+      <label for="tirageName" class="form-label fw-bold text-brown mb-0" style="white-space: nowrap;  font-size: 25px;">
         Nom du tirage :
       </label>
       <input id="tirageName" type="text" class="form-control form-control-custom fw-bold px-3 py-1"
@@ -18,11 +18,11 @@
       </label>
       <input id="numberOfGroups" type="number" class="form-control text-center fw-bold" [value]="numberOfGroups"
         (input)="onNumberChange($event)" min="2" oninput="if(this.value < 2) this.value = 2"
-        style="width: 55px; background-color: #bd8e6a; border: 1px solid #7a5a49; height: 40px;" />
+        style="width: 55px; background-color: #bd8e6a; border: 1px solid #7a5a49; height: 35px;" />
     </div>
   </div>
 
-  <div class="d-flex flex-wrap gap-4 justify-content-start">
+  <div class="d-flex flex-wrap gap-4 justify-content-start mt-4">
     <div class="form-check d-flex align-items-center gap-3 flex-row">
       <label for="mixerAge" class="form-check-label fw-bold text-brown mb-0" style="font-size: 20px; order: 1;">
         Mixer par âge 

@@ -50,7 +50,6 @@ h4 {
   width: 90%;
 }
 
-
 .form-label:focus {
   background-color: #bd8e6a;
   border-color: #c29b7f;
@@ -62,7 +61,7 @@ h4 {
   text-align: center;
   display: flex;
   align-self: center;
-  width: 70%;
+  width: 90%;
   cursor: text;
 }
 
@@ -96,7 +95,7 @@ h4 {
   border: 1px solid #7a5a49;
   border-radius: 10px;
   color: #3a2a20;
-font-size: 18px;
+  font-size: 18px;
 }
 
 .btn-primary-custom {
