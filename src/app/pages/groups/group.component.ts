@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 
 import { ListService } from '../../core/list.services';
 import { GroupsService } from '../../core/groups.service';
-
 import { List } from '../../core/models/list.model';
 import { Group } from '../../core/models/group.model';
 
@@ -22,7 +23,8 @@ import { GroupTitleComponent } from '../../composants/groups-component/group-tit
     GroupHeaderComponent,
     GroupGeneratedComponent,
     GroupHistoryComponent,
-    GroupTitleComponent
+    GroupTitleComponent,
+    DragDropModule
   ],
   templateUrl: './group.component.html',
   styleUrls: ['./group.component.css'],

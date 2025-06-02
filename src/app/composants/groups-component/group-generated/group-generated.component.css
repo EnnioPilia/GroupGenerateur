@@ -96,6 +96,14 @@ h4 {
   border-radius: 10px;
   color: #3a2a20;
   font-size: 18px;
+  cursor: grab;
+}
+.group-list-item:active {
+  cursor: grabbing;
+}
+
+.group-list-item.cdk-drag-dragging {
+  cursor: grabbing;
 }
 
 .btn-primary-custom {

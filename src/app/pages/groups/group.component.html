@@ -19,12 +19,14 @@
           (tirageNameChange)="updateTirageName(list, $event)">
         </app-group-header>
 
-        <app-group-generated
-          [list]="list"
-          [groups]="list.generatedGroups || []"
-          [errorMessage]="list.errorMessage || ''"
-          (generate)="generateForList(list.id)">
-        </app-group-generated>
+<app-group-generated
+  [list]="list"
+  [groups]="list.generatedGroups || []"
+  [errorMessage]="list.errorMessage || ''"
+  (generate)="generateForList(list.id)"
+  (groupsChange)="list.generatedGroups = $event">
+</app-group-generated>
+
 
 
           <div class="text-center w-100 py-3 " *ngIf="list.showGroups && !list.groupsSaved">
