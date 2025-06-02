@@ -30,14 +30,14 @@
           (focus)="clearPlaceholder()"
           (blur)="resetPlaceholder()" />
 
-        <ul
-          class="list-group group-list px-4"
-          cdkDropList
-          [cdkDropListData]="group.persons"
-          [cdkDropListConnectedTo]="connectedDropListsIds(i)"
-          (cdkDropListDropped)="drop($event)"
-          [id]="'group-list-' + i"
-        >
+   <ul
+  cdkDropList
+  [cdkDropListData]="group.persons"
+  [cdkDropListConnectedTo]="connectedDropListsIds(i)"
+  (cdkDropListDropped)="drop($event)"
+  [id]="instanceId + '-group-list-' + i"
+>
+
           <li
         *ngFor="let person of group.persons; let j = index"
         class="list-group-item group-list-item mb-3 p-3 mx-4"

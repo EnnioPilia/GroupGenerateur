@@ -24,8 +24,9 @@
   [groups]="list.generatedGroups || []"
   [errorMessage]="list.errorMessage || ''"
   (generate)="generateForList(list.id)"
-  (groupsChange)="list.generatedGroups = $event">
-</app-group-generated>
+  [instanceId]="list.id"
+  (groupsChange)="list.generatedGroups = $event"
+></app-group-generated>
 
 
 

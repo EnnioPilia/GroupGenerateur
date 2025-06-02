@@ -17,6 +17,7 @@ export class GroupGeneratedComponent {
   @Input() groups: Group[] = [];
   @Input() list!: List;
 @Output() groupsChange = new EventEmitter<Group[]>();
+@Input() instanceId!: string;
 
   @Output() generate = new EventEmitter<void>();
 
@@ -60,10 +61,10 @@ export class GroupGeneratedComponent {
   //   }
   // }
 connectedDropListsIds(currentIndex: number): string[] {
-    return this.groups
-      .map((_, index) => `group-list-${index}`)
-      .filter(id => id !== `group-list-${currentIndex}`);
-  }
+  return this.groups
+    .map((_, index) => `${this.instanceId}-group-list-${index}`)
+    .filter(id => id !== `${this.instanceId}-group-list-${currentIndex}`);
+}
 
   drop(event: CdkDragDrop<any[]>) {
     if (event.previousContainer === event.container) {
