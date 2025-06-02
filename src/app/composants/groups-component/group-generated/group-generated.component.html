@@ -23,20 +23,27 @@
 
       <div *ngFor="let group of groups; let i = index" class="group card mb-4 shadow-sm p-3">
 
-        <input
-          type="text"
-          class="form-label mb-1 fw-bold text-brown mb-4 mt-3 p-2"
-          [placeholder]="placeholder"
-          (focus)="clearPlaceholder()"
-          (blur)="resetPlaceholder()" />
+<input
+  type="text"
+  class="form-label mb-1 fw-bold text-brown mb-4 mt-3 p-2"
+  [placeholder]="placeholder"
+  (focus)="onInputFocus($event)"
+  (focus)="clearPlaceholder()"
+  (blur)="resetPlaceholder()"
+/>
 
-   <ul
+<ul
+  class="list-group group-list px-4"
   cdkDropList
   [cdkDropListData]="group.persons"
   [cdkDropListConnectedTo]="connectedDropListsIds(i)"
   (cdkDropListDropped)="drop($event)"
-  [id]="instanceId + '-group-list-' + i"
+  (cdkDragStarted)="dropStarted()"
+  (cdkDragEnded)="dropEnded()"
+  [id]="'group-list-' + i"
+
 >
+
 
           <li
         *ngFor="let person of group.persons; let j = index"

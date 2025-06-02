@@ -1,12 +1,12 @@
-<div class="container-fluid parent-page py-4 ">
+<div class="container-fluid parent-page py-4">
   <div class="row justify-content-center g-4">
 
-    <div class="col-12 col-md-10">
+    <div class="col-12 col-md-8">
       <app-group-title title=". GENERATEUR DE GROUPES ."></app-group-title>
     </div>
 
-    <div *ngFor="let list of lists" class="col-12 col-md-5 ">
-      <div class="list-section p-4 ">
+    <div *ngFor="let list of lists" class="col-12 col-md-8">
+      <div class="list-section p-4">
         <app-group-header
           [list]="list"
           [numberOfGroups]="numberOfGroups"
@@ -19,22 +19,20 @@
           (tirageNameChange)="updateTirageName(list, $event)">
         </app-group-header>
 
-<app-group-generated
-  [list]="list"
-  [groups]="list.generatedGroups || []"
-  [errorMessage]="list.errorMessage || ''"
-  (generate)="generateForList(list.id)"
-  [instanceId]="list.id"
-  (groupsChange)="list.generatedGroups = $event"
-></app-group-generated>
+        <app-group-generated
+          [list]="list"
+          [groups]="list.generatedGroups || []"
+          [errorMessage]="list.errorMessage || ''"
+          (generate)="generateForList(list.id)"
+          [instanceId]="list.id"
+          (groupsChange)="list.generatedGroups = $event"
+        ></app-group-generated>
 
-
-
-          <div class="text-center w-100 py-3 " *ngIf="list.showGroups && !list.groupsSaved">
-            <button class="btn btn-success w-45 py-2" (click)="archiveGroups(list.id)">
-              Archiver ce tirage
-            </button>
-          </div>
+        <div class="text-center w-100 py-3" *ngIf="list.showGroups && !list.groupsSaved">
+          <button class="btn btn-success w-45 py-2" (click)="archiveGroups(list.id)">
+            Archiver ce tirage
+          </button>
+        </div>
 
         <div class="text-center w-100 py-3 mt-4">
           <button 
@@ -43,7 +41,6 @@
             (click)="toggleSavedGroupsVisibility(list)">
             {{ list.showSavedGroups ? 'Cacher' : 'Afficher' }} l’historique
           </button>
-
         </div>
 
         <app-group-history

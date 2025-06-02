@@ -60,13 +60,31 @@ export class GroupGeneratedComponent {
   //     this.groups[index].name = newName;
   //   }
   // }
+
+
+  isDragging = false;
+
+  dropStarted() {
+    this.isDragging = true;
+  }
+
+  dropEnded() {
+    this.isDragging = false;
+  }
+
+  onInputFocus(event: FocusEvent) {
+    if (this.isDragging) {
+      (event.target as HTMLInputElement).blur();
+    }
+  }
 connectedDropListsIds(currentIndex: number): string[] {
   return this.groups
-    .map((_, index) => `${this.instanceId}-group-list-${index}`)
-    .filter(id => id !== `${this.instanceId}-group-list-${currentIndex}`);
+    .map((_, index) => `group-list-${index}`)
+    .filter(id => id !== `group-list-${currentIndex}`);
 }
 
   drop(event: CdkDragDrop<any[]>) {
+    // Ton code existant pour déplacer les personnes
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -78,6 +96,6 @@ connectedDropListsIds(currentIndex: number): string[] {
       );
     }
     this.groupsChange.emit(this.groups);
+    this.dropEnded(); // bien finir le drag
   }
-
 }
