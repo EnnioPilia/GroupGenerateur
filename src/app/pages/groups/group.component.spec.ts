@@ -79,12 +79,14 @@ describe('GroupGeneratedComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display error message when set', () => {
-    component.errorMessage = 'Erreur de test';
-    fixture.detectChanges();
-    const errorElem = fixture.debugElement.query(By.css('.error-message'));
-    expect(errorElem.nativeElement.textContent).toContain('Erreur de test');
-  });
+it('should display error message when set', () => {
+  component.errorMessage = 'Erreur de test';
+  fixture.detectChanges();
+  const errorElem = fixture.debugElement.query(By.css('.error'));  // <-- ici
+  expect(errorElem).toBeTruthy(); // utile pour éviter erreur si null
+  expect(errorElem.nativeElement.textContent).toContain('Erreur de test');
+});
+
 
   it('should emit generate event and reset tirageName on onGenerate', () => {
     spyOn(component.generate, 'emit');

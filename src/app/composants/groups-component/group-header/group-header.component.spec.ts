@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
     <app-group-header
       [(numberOfGroups)]="numberOfGroups"
       [(criteria)]="criteria"
-      [group]="group"
+      [list]="list"
     ></app-group-header>
   `
 })
@@ -20,7 +20,7 @@ class TestHostComponent {
     mixerAncienDwwm: true,
     mixerAge: false
   };
-  group = {
+  list = {
     id: 'g1',
     name: 'Groupe test',
     persons: []
@@ -59,10 +59,11 @@ describe('GroupHeaderComponent', () => {
     expect(hostComponent.numberOfGroups).toBe(5);
   });
 
-  it('should bind and emit criteria changes', () => {
-    const checkboxes: NodeListOf<HTMLInputElement> = fixture.nativeElement.querySelectorAll('input[type="checkbox"]');
-    checkboxes[1].click(); // simulate user toggling mixerAge
-    fixture.detectChanges();
-    expect(hostComponent.criteria.mixerAge).toBe(true);
-  });
+it('should bind and emit criteria changes', () => {
+  const checkboxes: NodeListOf<HTMLInputElement> = fixture.nativeElement.querySelectorAll('input[type="checkbox"]');
+  checkboxes[0].click();  // clic sur mixerAge
+  fixture.detectChanges();
+  expect(hostComponent.criteria.mixerAge).toBe(true);
+});
+
 });

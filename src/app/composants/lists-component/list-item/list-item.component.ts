@@ -16,6 +16,7 @@ export class ListItemComponent {
   @Input() selectedListId: string | null = null;
   @Input() editingListId: string | null = null;
   @Input() editedListName: string = '';
+  @Input() item!: { id: number; name: string };
 
   @Output() selectList = new EventEmitter<string | null>();
   @Output() editListName = new EventEmitter<string>();
