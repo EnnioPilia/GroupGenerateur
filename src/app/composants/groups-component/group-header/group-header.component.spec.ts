@@ -3,7 +3,6 @@ import { GroupHeaderComponent } from './group-header.component';
 import { FormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
 
-// Un wrapper de test pour simuler l'utilisation du composant
 @Component({
   standalone: true,
   imports: [GroupHeaderComponent],
@@ -11,6 +10,7 @@ import { Component } from '@angular/core';
     <app-group-header
       [(numberOfGroups)]="numberOfGroups"
       [(criteria)]="criteria"
+      [group]="group"
     ></app-group-header>
   `
 })
@@ -20,7 +20,13 @@ class TestHostComponent {
     mixerAncienDwwm: true,
     mixerAge: false
   };
+  group = {
+    id: 'g1',
+    name: 'Groupe test',
+    persons: []
+  };
 }
+
 
 describe('GroupHeaderComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
