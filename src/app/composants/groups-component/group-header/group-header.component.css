@@ -18,7 +18,8 @@ h2 {
   text-align: center;
   border-bottom: 1px solid #7a5a49;
   margin-bottom: 1rem;
-    display: inline-block;     /* prend la taille du texte */
+  display: inline-block;
+  /* prend la taille du texte */
 
 }
 
@@ -38,7 +39,7 @@ h3 {
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
-  
+
 }
 
 .bg-list-header label.text-brown {
@@ -51,12 +52,12 @@ h3 {
   border-color: #c29b7f;
   color: #3a2a20;
   font-weight: 600;
-    border-color: #6e4b3a !important;
+  border-color: #6e4b3a !important;
 
 }
 
-.form-control-custom{
-  width: 210px;
+.form-control-custom {
+  width: 150px;
 }
 
 .bg-list-header .form-check-input {
@@ -102,26 +103,28 @@ h3 {
   background-color: #c9302c;
   border-color: #ac2925;
 }
+
 .form-check {
   display: flex;
   align-items: center;
-  gap: 0.5rem; 
+  gap: 0.5rem;
   padding-left: 0 !important;
 }
 
 
 .form-check-label {
-  order: 1; 
-  font-size: 20px;
+  order: 1;
+  font-size: 25px !important;
   font-weight: 700;
-  color: #5e3b2c; 
-  margin-bottom: 0; 
-  user-select: none; 
+  color: #5e3b2c;
+  margin-bottom: 0;
+  user-select: none;
+
 }
 
 .form-check-input {
-  order: 2; 
-  margin: 0; 
+  order: 2;
+  margin: 0;
   cursor: pointer;
   padding-left: 0 !important;
 }
@@ -144,11 +147,13 @@ h3 {
     flex-direction: column;
     align-items: stretch;
   }
+
   @media (min-width: 1800px) {
-  .bg-list-header > .d-flex.flex-wrap.gap-4.justify-content-between.align-items-center.mb-4 {
-    flex-direction: column !important;
-    align-items: flex-start !important; /* ou center, selon préférence */
+    .bg-list-header>.d-flex.flex-wrap.gap-4.justify-content-between.align-items-center.mb-4 {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      /* ou center, selon préférence */
+    }
   }
-}
 
 }
