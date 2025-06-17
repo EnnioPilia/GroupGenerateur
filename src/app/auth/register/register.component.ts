@@ -1,38 +1,55 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-
+import { Router } from '@angular/router';
+import { AuthService } from '../../core/auth.service';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
-  // standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-
-
 export class RegisterComponent {
-  registerForm = new FormGroup({
-    name: new FormControl('', [Validators.required,Validators.minLength(2)]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    passWord: new FormControl('', [Validators.required,Validators.minLength(8)]),
-    age: new FormControl(null, [Validators.required, Validators.min(18)])
+  registerForm: FormGroup;
+  errorMessage = '';
 
-  });
-  constructor(private router: Router) {}
-
-  onSubmit() {
-    if (this.registerForm.valid) {
-      console.log(this.registerForm.value);
-            this.router.navigate(['/lists']);
-
-    }
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private fb: FormBuilder  // injecte FormBuilder pour faciliter la création du formulaire
+  ) {
+    this.registerForm = this.fb.group({
+      // name: ['', [Validators.required, Validators.minLength(2)]],
+      email: ['', [Validators.required, Validators.email]],
+      // age: ['', [Validators.required, Validators.min(18)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+    });
   }
+
+onSubmit(): void {
+  this.errorMessage = '';
+
+  if (this.registerForm.invalid) {
+    this.errorMessage = 'Formulaire invalide';
+    return;
+  }
+
+  const { email, password } = this.registerForm.value;
+
+this.authService.register({ email, password }).subscribe({
+  next: (message) => {
+    console.log('Inscription OK:', message);
+    this.router.navigateByUrl('/login');  // on va vers login pour que l'utilisateur se connecte
+  },
+  error: (error) => {
+    this.errorMessage = error.error || 'Erreur lors de la création du compte';
+  }
+});
 }
 
-
-
+  goToLogin(): void {
+    this.router.navigateByUrl('/login');
+  }
+}
