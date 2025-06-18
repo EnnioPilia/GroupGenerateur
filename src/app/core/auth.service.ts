@@ -24,9 +24,9 @@ export class AuthService {
   private http = inject(HttpClient);
   private baseUrl = 'http://localhost:8080/auth';  // URL backend
 
-  register(data: RegisterRequest): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.baseUrl}/register`, data);
-  }
+register(data: RegisterRequest): Observable<string> {
+  return this.http.post<string>(`${this.baseUrl}/register`, data);
+}
 
   login(data: LoginRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.baseUrl}/login`, data);
