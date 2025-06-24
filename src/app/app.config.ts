@@ -4,6 +4,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { routes } from './app.routes';
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { HttpInterceptorFn } from '@angular/common/http';
+import { jwtDecode } from 'jwt-decode';
 
 // ✅ Interceptor fonctionnel standalone
 export const authInterceptorFn: HttpInterceptorFn = (req, next) => {

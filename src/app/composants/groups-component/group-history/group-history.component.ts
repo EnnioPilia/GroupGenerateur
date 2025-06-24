@@ -4,6 +4,7 @@ import { GroupsService } from '../../../core/groups.service';
 import { Group } from '../../../core/models/group.model';
 import { ListService } from '../../../core/list.services'; // IMPORTANT
 import { List } from '../../../core/models/list.model';
+import { AuthService } from '../../../core/auth.service';
 
 @Component({
   selector: 'app-group-history',
@@ -18,14 +19,21 @@ export class GroupHistoryComponent implements OnInit {
   history: Group[][] = [];
   @Output() delete = new EventEmitter<void>();
 
+  isAdmin = false; // <--- ajout
+
   constructor(
     private groupsService: GroupsService,
-    private listService: ListService // Injection pour récupérer la liste
+    private listService: ListService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.loadList();
     this.loadHistory();
+
+    this.isAdmin = this.authService.isAdmin();  // <--- récupère le rôle admin
+        console.log('Is Admin:', this.isAdmin);  // Pour debug
+
   }
 
   loadList(): void {

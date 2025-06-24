@@ -1,6 +1,6 @@
 <div class="group-history container  p-3 rounded border bg-light">
   <h3 class="text-center mb-4" style="font-family: 'Poiret One', cursive; color: #5e3b2c;">
-    Historique des groupes : 
+    Historique des groupes :
     <span style="color: #5a4031;">{{ list?.name }}</span>
   </h3>
 
@@ -8,41 +8,40 @@
     Aucun groupe généré pour le moment.
   </div>
 
-<div *ngIf="history.length > 0">
-  <div *ngFor="let groups of history; index as i" 
-       class="group-tirage container my-4 p-3 rounded border" 
-       style="background-color: #d6d2d0;">
+  <div *ngIf="history.length > 0">
+    <div *ngFor="let groups of history; index as i" class="group-tirage container my-4 p-3 rounded border"
+      style="background-color: #d6d2d0;">
 
-    <!-- Titre centré -->
-    <h4 class="mb-4 text-center " style="font-family: 'Poiret One', cursive; color: #5e3b2c;">
-      Tirage # {{ i + 1 }}
-    </h4>
+      <!-- Titre centré -->
+      <h4 class="mb-4 text-center " style="font-family: 'Poiret One', cursive; color: #5e3b2c;">
+        Tirage # {{ i + 1 }}
+      </h4>
 
-    <!-- Conteneur centré pour les groupes -->
-    <div class="row justify-content-center">
-      <div *ngFor="let group of groups" class="mb-3 col-12 col-md-5">
-        <strong class="d-block " style="color: #3f251a; font-size: 1.2rem;">
-          <span class="ms-4" style="border-bottom: 1px solid #3f251a;">{{ group.name }}</span>
-        </strong>
+      <!-- Conteneur centré pour les groupes -->
+      <div class="row justify-content-center">
+        <div *ngFor="let group of groups" class="mb-3 col-12 col-md-5">
+          <strong class="d-block " style="color: #3f251a; font-size: 1.2rem;">
+            <span class="ms-4" style="border-bottom: 1px solid #3f251a;">{{ group.name }}</span>
+          </strong>
 
-        <ul class="list-group mt-2">
-          <li *ngFor="let person of group.persons" class="list-group-item"
+          <ul class="list-group mt-2">
+            <li *ngFor="let person of group.persons" class="list-group-item"
               style="background-color: #cca289; border-color: #cca289; color: #523f34; font-weight: 600;">
-             * {{ person.lastName }} - ({{ person.age }} ans) - {{ person.isFormerDwwm }}
-          </li>
-        </ul>
+              * {{ person.lastName }} - ({{ person.age }} ans) - {{ person.isFormerDwwm }}
+            </li>
+          </ul>
+        </div>
       </div>
+
+
+
+
+      <div class="text-center mt-3">
+
+<button *ngIf="isAdmin" (click)="delete.emit()" class="btn-danger-custom ">Supprimer les groupes</button>
+   
+   
+      </div>
+
     </div>
-
-
-
-      <!-- A RETIRER PAR LA SUITE !!!!! -->
-
-    <!-- <div class="text-center mt-3">
-      <button class="btn btn-danger-custom fw-bold px-4" (click)="delete.emit()">
-        Supprimer les groupes
-      </button> 
-    </div> -->
-
   </div>
-</div>
