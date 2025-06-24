@@ -23,14 +23,22 @@ h2.text-custom {
 
 .table-responsive {
   margin: 1rem auto;
-  max-width: 600px;
+ width: 719px;
   border-radius: 12px;
-  overflow-x: auto !important;
-  -webkit-overflow-scrolling: touch;
+  /* overflow-x: auto;
+  -webkit-overflow-scrolling: touch; */
   box-shadow: 0 4px 8px rgba(122, 90, 73, 0.1);
   background-color: #f4e3d6;
   padding: 0.5rem;
   border: 1px solid #5e3b2c;
+  overflow-x: auto;  /* scroll si besoin */
+
+}
+
+.table-responsive table {
+  min-width: 700px; /* Force la largeur mini */
+  width: auto;       /* Ne force pas la largeur à 100% */
+
 }
 
 .table {

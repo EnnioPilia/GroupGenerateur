@@ -159,16 +159,16 @@ export class ListsComponent implements OnInit {
     }
   }
 
-  saveListName(listId: string) {
-    const list = this.lists.find(l => l.id === listId);
-    if (list && this.editedListName.trim()) {
-      list.name = this.editedListName.trim();
-      this.listService.updateList(list.id, list.name, list.persons);
-      this.editingListId = null;
-      this.editedListName = '';
-      this.loadLists();
-    }
+saveListName(listId: string, newName: string) {
+  const list = this.lists.find(l => l.id === listId);
+  if (list && newName.trim()) {
+    list.name = newName.trim();
+    this.listService.updateList(list.id, list.name, list.persons);
+    this.editingListId = null;
+    this.loadLists();
   }
+}
+
 
   goToGroupGenerator() {
     this.router.navigate(['/group']);

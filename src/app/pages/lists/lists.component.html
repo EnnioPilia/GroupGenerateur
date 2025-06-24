@@ -7,21 +7,19 @@
     (create)="createList()"
   ></app-list-header>
 
-  <ul class="list-unstyled">
-    <app-list-item
-      *ngFor="let list of lists"
-      [list]="list"
-      [selectedListId]="selectedListId"
-      [editingListId]="editingListId"
-      [editedListName]="editedListName"
-      (selectList)="selectList($event)"
-      (editListName)="editListName($event)"
-      (saveListName)="saveListName($event)"
-      (deleteList)="deleteList($event)"
-    >
+        <ul class="list-unstyled">
+          <app-list-item
+        *ngFor="let list of lists"
+        [list]="list"
+        [selectedListId]="selectedListId"
+        [editingListId]="editingListId"
+        (selectList)="selectList($event)"
+        (editListName)="editListName($event)"
+        (saveListName)="saveListName(list.id, $event)"
+        (deleteList)="deleteList($event)"
+          >
       <div *ngIf="selectedListId === list.id" class="row gx-3 p-3 bg-light-custom border-custom rounded-3">
 
-        <!-- Formulaire pour ajouter une personne -->
         <div class="col-md-6" style="width: 40%;">
           <app-person-form
             [formPerson]="formPerson"
@@ -29,7 +27,6 @@
           ></app-person-form>
         </div>
 
-        <!-- Tableau des personnes dans la liste -->
         <div class="col-md-6 ms-3">
           <app-person-table
             [persons]="list.persons || []"
