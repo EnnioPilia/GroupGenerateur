@@ -20,6 +20,7 @@ interface AuthResponse {
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
   private http = inject(HttpClient);
   private baseUrl = 'http://localhost:8080/auth';  // URL backend
