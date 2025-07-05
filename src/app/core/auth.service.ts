@@ -1,60 +1,53 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { map, catchError, tap } from 'rxjs/operators';
+import { tap, catchError, map } from 'rxjs/operators';
 
-export interface User {
-  email: string;
-  password: string;
-  firstName: string;
-  lastName: string;
+export interface AuthResponse {
+  token: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class AuthService {
-  private loggedInUser: User | null = null;
+  private tokenKey = 'authToken';
 
   constructor(private http: HttpClient) { }
 
-  login(email: string, password: string): Observable<User> {
-    return this.http.get<User[]>('assets/data/users.json').pipe(
-      tap(users => console.log('UTILISATEURS CHARGÉS:', users)), // 👈 debug
-      map(users => {
-        const user = users.find(u =>
-          u.email.trim().toLowerCase() === email.trim().toLowerCase() &&
-          u.password === password.trim()
-        );
-
-        if (!user) {
-          throw new Error('Identifiants incorrects');
-        }
-
-        this.loggedInUser = user;
-        localStorage.setItem('user', JSON.stringify(user));
-        return user;
+  login(email: string, password: string): Observable<void> {
+    return this.http.post<AuthResponse>('http://localhost:8080/auth/login', { email, password })
+.pipe(
+      tap(response => {
+        localStorage.setItem(this.tokenKey, response.token);
       }),
+      map(() => void 0), // On ne renvoie rien, juste une notification de succès
       catchError(err => {
-        console.error('Erreur de login:', err.message);
+        console.error('Erreur de login:', err);
         return throwError(() => err);
       })
     );
   }
 
   logout(): void {
-    this.loggedInUser = null;
-    localStorage.removeItem('user');
+    localStorage.removeItem(this.tokenKey);
   }
 
-  getUser(): User | null {
-    if (this.loggedInUser) return this.loggedInUser;
-    const stored = localStorage.getItem('user');
-    return stored ? JSON.parse(stored) : null;
+  getToken(): string | null {
+    return localStorage.getItem(this.tokenKey);
   }
 
   isLoggedIn(): boolean {
-    return !!this.getUser();
+    return !!this.getToken();
   }
+register(data: { name: string; email: string; password: string; age: number; role?: string }): Observable<any> {
+  return this.http.post('http://localhost:8080/auth/register', data).pipe(
+    tap(response => console.log('Inscription réussie', response)),
+    catchError(err => {
+      console.error('Erreur lors de l’inscription:', err);
+      return throwError(() => err);
+    })
+  );
+}
+
 }
