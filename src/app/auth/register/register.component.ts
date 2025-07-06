@@ -32,10 +32,17 @@ export class RegisterComponent {
         age: formValue.age!
       };
 
-      this.authService.register(data).subscribe({
-        next: () => this.router.navigate(['/lists']),
-        error: (err) => console.error('Erreur inscription :', err)
-      });
+    this.authService.register(data).subscribe({
+      next: () => {
+        console.log('Inscription réussie, redirection...');
+        this.router.navigate(['/lists']).then(success => {
+          if (!success) {
+            console.error('Navigation vers /lists a échoué');
+          }
+        });
+      },
+      error: (err) => console.error('Erreur inscription :', err)
+    });
     }
   }
 }

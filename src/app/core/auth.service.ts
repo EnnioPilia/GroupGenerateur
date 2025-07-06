@@ -15,19 +15,19 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  login(email: string, password: string): Observable<void> {
-    return this.http.post<AuthResponse>('http://localhost:8080/auth/login', { email, password })
-.pipe(
-      tap(response => {
-        localStorage.setItem(this.tokenKey, response.token);
+login(email: string, password: string): Observable<void> {
+  return this.http.post<{ token: string }>('http://localhost:8080/auth/login', { email, password }, { withCredentials: true })
+    .pipe(
+      tap(() => {
+        // Pas besoin de stocker le token, cookie HttpOnly est utilisé automatiquement par le navigateur
       }),
-      map(() => void 0), // On ne renvoie rien, juste une notification de succès
+      map(() => void 0),
       catchError(err => {
         console.error('Erreur de login:', err);
         return throwError(() => err);
       })
     );
-  }
+}
 
   logout(): void {
     localStorage.removeItem(this.tokenKey);
